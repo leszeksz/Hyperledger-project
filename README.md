@@ -4,6 +4,8 @@
 
 3. use script: "./network.sh deployCC -ccn basic -ccp ../asset-transfer-basic/chaincode-java/ -ccl java"
 
-4. Navigate to "application-gateway-java"
+4. Again from "test-network" directory use the command to set your CLI Path "export PATH=${PWD}/../bin:$PATH"
+
+4. Navigate to "asset-tranfer-basic/application-gateway-java"
 
 5. use script: "./gradlew run"
