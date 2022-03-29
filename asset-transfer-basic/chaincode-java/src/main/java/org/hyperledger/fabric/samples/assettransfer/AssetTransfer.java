@@ -55,41 +55,38 @@ public final class AssetTransfer implements ContractInterface {
     public void InitLedger(final Context ctx) {
         ChaincodeStub stub = ctx.getStub();
 
-        CreateAsset(ctx, "asset1", "blue", 5, "Tomoko", 300);
-        CreateAsset(ctx, "asset2", "red", 5, "Brad", 400);
-        CreateAsset(ctx, "asset3", "green", 10, "Jin Soo", 500);
-        CreateAsset(ctx, "asset4", "yellow", 10, "Max", 600);
-        CreateAsset(ctx, "asset5", "black", 15, "Adrian", 700);
-        CreateAsset(ctx, "asset6", "white", 15, "Michel", 700);
-
+        CreateAsset(ctx, "asset1", "Tomoko", 300);
+        CreateAsset(ctx, "asset2", "Brad", 400);
+        CreateAsset(ctx, "asset3", "Jin Soo", 500);
+        CreateAsset(ctx, "asset4", "Max", 600);
+        CreateAsset(ctx, "asset5", "Adrian", 700);
+        CreateAsset(ctx, "asset6", "Michel", 700);
     }
 
     /**
      * Creates a new asset on the ledger.
      *
      * @param ctx the transaction context
-     * @param assetID the ID of the new asset
-     * @param color the color of the new asset
-     * @param size the size for the new asset
+     * @param productID the ID of the new asset
      * @param owner the owner of the new asset
      * @param appraisedValue the appraisedValue of the new asset
      * @return the created asset
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Asset CreateAsset(final Context ctx, final String assetID, final String color, final int size,
+    public Asset CreateAsset(final Context ctx, final String productID,
         final String owner, final int appraisedValue) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (AssetExists(ctx, assetID)) {
-            String errorMessage = String.format("Asset %s already exists", assetID);
+        if (AssetExists(ctx, productID)) {
+            String errorMessage = String.format("Asset %s already exists", productID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
         }
 
-        Asset asset = new Asset(assetID, color, size, owner, appraisedValue);
+        Asset asset = new Asset(productID,owner, appraisedValue);
         //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(asset);
-        stub.putStringState(assetID, sortedJson);
+        stub.putStringState(productID, sortedJson);
 
         return asset;
     }
@@ -98,16 +95,16 @@ public final class AssetTransfer implements ContractInterface {
      * Retrieves an asset with the specified ID from the ledger.
      *
      * @param ctx the transaction context
-     * @param assetID the ID of the asset
+     * @param productID the ID of the asset
      * @return the asset found on the ledger if there was one
      */
     @Transaction(intent = Transaction.TYPE.EVALUATE)
-    public Asset ReadAsset(final Context ctx, final String assetID) {
+    public Asset ReadAsset(final Context ctx, final String productID) {
         ChaincodeStub stub = ctx.getStub();
-        String assetJSON = stub.getStringState(assetID);
+        String assetJSON = stub.getStringState(productID);
 
         if (assetJSON == null || assetJSON.isEmpty()) {
-            String errorMessage = String.format("Asset %s does not exist", assetID);
+            String errorMessage = String.format("Asset %s does not exist", productID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
         }
@@ -120,28 +117,26 @@ public final class AssetTransfer implements ContractInterface {
      * Updates the properties of an asset on the ledger.
      *
      * @param ctx the transaction context
-     * @param assetID the ID of the asset being updated
-     * @param color the color of the asset being updated
-     * @param size the size of the asset being updated
+     * @param productID the ID of the asset being updated
      * @param owner the owner of the asset being updated
      * @param appraisedValue the appraisedValue of the asset being updated
      * @return the transferred asset
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Asset UpdateAsset(final Context ctx, final String assetID, final String color, final int size,
+    public Asset UpdateAsset(final Context ctx, final String productID,
         final String owner, final int appraisedValue) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (!AssetExists(ctx, assetID)) {
-            String errorMessage = String.format("Asset %s does not exist", assetID);
+        if (!AssetExists(ctx, productID)) {
+            String errorMessage = String.format("Asset %s does not exist", productID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
         }
 
-        Asset newAsset = new Asset(assetID, color, size, owner, appraisedValue);
+        Asset newAsset = new Asset(productID, owner, appraisedValue);
         //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(newAsset);
-        stub.putStringState(assetID, sortedJson);
+        stub.putStringState(productID, sortedJson);
         return newAsset;
     }
 
@@ -149,32 +144,32 @@ public final class AssetTransfer implements ContractInterface {
      * Deletes asset on the ledger.
      *
      * @param ctx the transaction context
-     * @param assetID the ID of the asset being deleted
+     * @param productID the ID of the asset being deleted
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public void DeleteAsset(final Context ctx, final String assetID) {
+    public void DeleteAsset(final Context ctx, final String productID) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (!AssetExists(ctx, assetID)) {
-            String errorMessage = String.format("Asset %s does not exist", assetID);
+        if (!AssetExists(ctx, productID)) {
+            String errorMessage = String.format("Asset %s does not exist", productID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
         }
 
-        stub.delState(assetID);
+        stub.delState(productID);
     }
 
     /**
      * Checks the existence of the asset on the ledger
      *
      * @param ctx the transaction context
-     * @param assetID the ID of the asset
+     * @param productID the ID of the asset
      * @return boolean indicating the existence of the asset
      */
     @Transaction(intent = Transaction.TYPE.EVALUATE)
-    public boolean AssetExists(final Context ctx, final String assetID) {
+    public boolean AssetExists(final Context ctx, final String productID) {
         ChaincodeStub stub = ctx.getStub();
-        String assetJSON = stub.getStringState(assetID);
+        String assetJSON = stub.getStringState(productID);
 
         return (assetJSON != null && !assetJSON.isEmpty());
     }
@@ -183,27 +178,27 @@ public final class AssetTransfer implements ContractInterface {
      * Changes the owner of a asset on the ledger.
      *
      * @param ctx the transaction context
-     * @param assetID the ID of the asset being transferred
+     * @param productID the ID of the asset being transferred
      * @param newOwner the new owner
      * @return the old owner
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public String TransferAsset(final Context ctx, final String assetID, final String newOwner) {
+    public String TransferAsset(final Context ctx, final String productID, final String newOwner) {
         ChaincodeStub stub = ctx.getStub();
-        String assetJSON = stub.getStringState(assetID);
+        String assetJSON = stub.getStringState(productID);
 
         if (assetJSON == null || assetJSON.isEmpty()) {
-            String errorMessage = String.format("Asset %s does not exist", assetID);
+            String errorMessage = String.format("Asset %s does not exist", productID);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
         }
 
         Asset asset = genson.deserialize(assetJSON, Asset.class);
 
-        Asset newAsset = new Asset(asset.getAssetID(), asset.getColor(), asset.getSize(), newOwner, asset.getAppraisedValue());
+        Asset newAsset = new Asset(asset.getProductID(), newOwner, asset.getPrice());
         //Use a Genson to conver the Asset into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(newAsset);
-        stub.putStringState(assetID, sortedJson);
+        stub.putStringState(productID, sortedJson);
 
         return asset.getOwner();
     }

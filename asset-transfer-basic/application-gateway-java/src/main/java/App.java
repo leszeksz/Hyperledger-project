@@ -16,6 +16,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
 import java.util.List;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
@@ -79,7 +80,11 @@ public final class App {
 
 		try (Gateway gateway = builder.connect()) {
 			new App(gateway).run();
-		} finally {
+		}
+		catch (Exception e){
+			System.out.println(e.getStackTrace());
+		}
+			finally {
 			channel.shutdownNow().awaitTermination(5, TimeUnit.SECONDS);
 		}
 	}
@@ -120,7 +125,7 @@ public final class App {
 	}
 
 	public void run() throws GatewayException, CommitException {
-		// Initialize a set of asset data on the ledger using the chaincode 'InitLedger' function.
+//		 Initialize a set of asset data on the ledger using the chaincode 'InitLedger' function.
 		initLedger();
 
 		// Return all the current assets on the ledger.

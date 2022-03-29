@@ -30,7 +30,7 @@ public class App {
 		Path walletPath = Paths.get("wallet");
 		Wallet wallet = Wallets.newFileSystemWallet(walletPath);
 		// load a CCP
-		Path networkConfigPath = Paths.get("..", "..", "test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
+		Path networkConfigPath = Paths.get("..", "test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
 
 		Gateway.Builder builder = Gateway.createBuilder();
 		builder.identity(wallet, "appUser").networkConfig(networkConfigPath).discovery(true);
@@ -91,9 +91,9 @@ public class App {
 
 			try {
 				System.out.println("\n");
-				System.out.println("Submit Transaction: UpdateAsset asset70");
+				System.out.println("Submit Transaction: UpdateAsset asset1");
 				//Non existing asset asset70 should throw Error
-				contract.submitTransaction("UpdateAsset", "asset70", "blue", "5", "Tomoko", "300");
+				contract.submitTransaction("UpdateAsset", "asset1", "blue", "5", "Tomoko", "300");
 			} catch (Exception e) {
 				System.err.println("Expected an error on UpdateAsset of non-existing Asset: " + e);
 			}
