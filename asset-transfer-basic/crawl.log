@@ -958,3 +958,18 @@ ERROR	2022-04-01 10:29:20,490	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	
 ERROR	2022-04-01 10:29:20,492	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@413d1baf
 ERROR	2022-04-01 10:33:09,310	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
 ERROR	2022-04-01 10:41:47,706	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset13 already exists; Asset asset13 already exists
+ERROR	2022-04-01 11:36:53,890	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset14 already exists; Asset asset14 already exists
+ERROR	2022-04-01 11:53:09,464	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
+ERROR	2022-04-01 11:58:40,295	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset blablabla already exists; Asset blablabla already exists
+ERROR	2022-04-01 12:02:34,913	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset blablabla already exists; Asset blablabla already exists
+ERROR	2022-04-01 12:04:00,423	85510	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
+ERROR	2022-04-01 12:05:47,021	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset blablabla already exists; Asset blablabla already exists
+ERROR	2022-04-01 12:08:11,012	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset blablabla already exists; Asset blablabla already exists
+ERROR	2022-04-01 12:15:22,044	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset akgfjbalkgfhab does not exist; Asset akgfjbalkgfhab does not exist
+ERROR	2022-04-01 12:16:57,797	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset sdgjsgsa does not exist; Asset sdgjsgsa does not exist
+ERROR	2022-04-01 12:25:07,561	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser8","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser8' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-04-01 12:25:07,565	4	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@1a75e76a
+ERROR	2022-04-01 14:00:47,302	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
+ERROR	2022-04-01 14:01:20,455	33153	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
+ERROR	2022-04-01 14:02:37,660	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
