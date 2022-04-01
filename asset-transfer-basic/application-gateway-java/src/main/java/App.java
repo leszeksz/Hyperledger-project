@@ -15,7 +15,9 @@ import java.security.PrivateKey;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.time.Instant;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -65,6 +67,7 @@ public final class App {
 	private final Contract contract;
 	private final String assetId = "asset" + Instant.now().toEpochMilli();
 	private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	private final int DEFAULT_USER_CHOICE = 0;
 
 	public static void main(final String[] args) throws Exception {
 		// The gRPC client connection should be shared by all Gateway connections to
@@ -125,23 +128,66 @@ public final class App {
 	}
 
 	public void run() throws GatewayException, CommitException {
-//		 Initialize a set of asset data on the ledger using the chaincode 'InitLedger' function.
-		initLedger();
 
-		// Return all the current assets on the ledger.
-		getAllAssets();
+		Scanner scanner = new Scanner(System.in);
+		int userChoice = getUserInput(scanner);
 
-		// Create a new asset on the ledger.
-		createAsset();
+		if(userChoice == DEFAULT_USER_CHOICE){
+			scanner.close();
+			System.out.println("You are about to exit");
+		}
 
-		// Update an existing asset asynchronously.
-		transferAssetAsync();
+		while(userChoice != DEFAULT_USER_CHOICE){
 
-		// Get the asset details by assetID.
-		readAssetById();
+			switch(userChoice){
+				case 1:
+					// Return all the current assets on the ledger.
+					getAllAssets();
+					System.out.println(Constants.GET_ALL_ASSETS);
+					break;
+				case 2:
+					// Create a new asset on the ledger.
+					createAsset();
+					System.out.println(Constants.CREATE_ASSET);
+					break;
+				case 3:
+					// Update an existing asset asynchronously.
+					transferAssetAsync();
+					System.out.println("transferAssetAsync");
+					break;
+				default:
+					System.out.println("You choose value out of range \nChoose value from a menu");
+					break;
+			}
+			if(userChoice != DEFAULT_USER_CHOICE) {
+				userChoice = getUserInput(scanner);
+			}
+		}
 
-		// Update an asset which does not exist.
-		updateNonExistentAsset();
+		scanner.close();
+		System.out.println("You are about to exit");
+
+	}
+
+	private int getUserInput(Scanner scanner){
+
+		System.out.println("Choose action: \n0-exit \n1-getAllAssets \n2-createAsset \n3-transferAssetAsync");
+		int userChoice = DEFAULT_USER_CHOICE;
+
+		try {
+			userChoice = scanner.nextInt();
+		} catch (InputMismatchException e){
+			System.out.println("You have not input integer");
+			e.printStackTrace();
+		} catch (NoSuchElementException e){
+			System.out.println("You have not input any value");
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			System.out.println("Scanner is closed");
+			e.printStackTrace();
+		}
+
+		return userChoice;
 	}
 	
 	/**
@@ -150,9 +196,9 @@ public final class App {
 	 * the chaincode deployed later would likely not need to run an "init" function.
 	 */
 	private void initLedger() throws EndorseException, SubmitException, CommitStatusException, CommitException {
-		System.out.println("\n--> Submit Transaction: InitLedger, function creates the initial set of assets on the ledger");
+		System.out.println("\n--> Submit Transaction: " + Constants.INIT_LEDGER + ", function creates the initial set of assets on the ledger");
 
-		contract.submitTransaction("InitLedger");
+		contract.submitTransaction(Constants.INIT_LEDGER);
 
 		System.out.println("*** Transaction committed successfully");
 	}
@@ -161,9 +207,9 @@ public final class App {
 	 * Evaluate a transaction to query ledger state.
 	 */
 	private void getAllAssets() throws GatewayException {
-		System.out.println("\n--> Evaluate Transaction: GetAllAssets, function returns all the current assets on the ledger");
+		System.out.println("\n--> Evaluate Transaction: " + Constants.GET_ALL_ASSETS + ", function returns all the current assets on the ledger");
 		
-		byte[] result = contract.evaluateTransaction("GetAllAssets");
+		byte[] result = contract.evaluateTransaction(Constants.GET_ALL_ASSETS);
 		
 		System.out.println("*** Result: " + prettyJson(result));
 	}
@@ -182,9 +228,9 @@ public final class App {
 	 * the ledger.
 	 */
 	private void createAsset() throws EndorseException, SubmitException, CommitStatusException, CommitException {
-		System.out.println("\n--> Submit Transaction: CreateAsset, creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
+		System.out.println("\n--> Submit Transaction: " + Constants.CREATE_ASSET + ", creates new asset with ID, Color, Size, Owner and AppraisedValue arguments");
 
-		contract.submitTransaction("CreateAsset", assetId, "yellow", "5", "Tom", "1300");
+		contract.submitTransaction(Constants.CREATE_ASSET, assetId, "yellow", "5", "Tom", "1300");
 
 		System.out.println("*** Transaction committed successfully");
 	}
@@ -195,9 +241,9 @@ public final class App {
 	 * notification.
 	 */
 	private void transferAssetAsync() throws EndorseException, SubmitException, CommitStatusException {
-		System.out.println("\n--> Async Submit Transaction: TransferAsset, updates existing asset owner");
+		System.out.println("\n--> Async Submit Transaction: " + Constants.TRANSFER_ASSET + " , updates existing asset owner");
 		
-		SubmittedTransaction commit = contract.newProposal("TransferAsset")
+		SubmittedTransaction commit = contract.newProposal(Constants.TRANSFER_ASSET)
 				.addArguments(assetId, "Saptha")
 				.build()
 				.endorse()
@@ -219,9 +265,9 @@ public final class App {
 	}
 
 	private void readAssetById() throws GatewayException {
-		System.out.println("\n--> Evaluate Transaction: ReadAsset, function returns asset attributes");
+		System.out.println("\n--> Evaluate Transaction: " + Constants.READ_ASSET + " , function returns asset attributes");
 		
-		byte[] evaluateResult = contract.evaluateTransaction("ReadAsset", assetId);
+		byte[] evaluateResult = contract.evaluateTransaction(Constants.READ_ASSET, assetId);
 		
 		System.out.println("*** Result:" + prettyJson(evaluateResult));
 	}
@@ -232,9 +278,9 @@ public final class App {
 	 */
 	private void updateNonExistentAsset() {
 		try {
-			System.out.println("\n--> Submit Transaction: UpdateAsset asset70, asset70 does not exist and should return an error");
+			System.out.println("\n--> Submit Transaction: " + Constants.UPDATE_ASSET +  " asset70, asset70 does not exist and should return an error");
 			
-			contract.submitTransaction("UpdateAsset", "asset70", "blue", "5", "Tomoko", "300");
+			contract.submitTransaction(Constants.UPDATE_ASSET, "asset70", "blue", "5", "Tomoko", "300");
 			
 			System.out.println("******** FAILED to return an error");
 		} catch (EndorseException | SubmitException | CommitStatusException e) {
