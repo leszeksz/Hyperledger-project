@@ -7,3 +7,969 @@ ERROR	2022-03-29 12:10:42,982	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	
 ERROR	2022-03-29 12:13:36,885	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	org.hyperledger.fabric_ca.sdk.exception.InvalidArgumentException: Unable to add CA certificate, can't open certificate file C:\hyper\fabric-samples\asset-transfer-basic\..\..\..\test-network\organizations\peerOrganizations\org1.example.com\ca\ca.org1.example.com-cert.pem
 ERROR	2022-03-29 12:14:35,223	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	org.hyperledger.fabric_ca.sdk.exception.InvalidArgumentException: Unable to add CA certificate, can't open certificate file C:\hyper\fabric-samples\asset-transfer-basic\..\..\test-network\organizations\peerOrganizations\org1.example.com\ca\ca.org1.example.com-cert.pem
 ERROR	2022-03-29 12:17:50,236	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 already exists; Asset asset1 already exists
+<<<<<<< Updated upstream
+ERROR	2022-04-01 09:43:07,741	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-04-01 09:43:07,743	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+=======
+ERROR	2022-03-29 12:33:48,243	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+	at application.java.App.main(App.java:43)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 13 more
+ERROR	2022-03-29 12:38:15,986	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+	at application.java.App.main(App.java:43)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 13 more
+ERROR	2022-03-29 12:46:22,072	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+	at application.java.App.main(App.java:45)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 13 more
+ERROR	2022-03-29 12:47:38,132	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+	at application.java.App.main(App.java:45)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 13 more
+ERROR	2022-03-29 12:48:22,499	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-03-29 12:51:05,766	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-03-29 12:53:39,224	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+	at application.java.App.main(App.java:45)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 13 more
+ERROR	2022-03-29 12:59:38,092	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-03-29 13:05:51,039	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-03-29 13:06:58,891	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7055 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7055 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-03-29 13:07:29,069	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+	at application.java.App.main(App.java:45)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 13 more
+ERROR	2022-03-29 13:37:53,278	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+	at application.java.App.main(App.java:45)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 13 more
+ERROR	2022-03-29 13:38:16,311	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+	at application.java.App.main(App.java:45)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 13 more
+ERROR	2022-03-29 13:47:09,563	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:47:09,563	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@413d1baf
+ERROR	2022-03-29 13:48:33,846	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:48:33,847	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@2e3967ea
+ERROR	2022-03-29 13:49:16,309	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:49:16,309	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+ERROR	2022-03-29 13:51:12,784	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:51:12,786	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@413d1baf
+ERROR	2022-03-29 13:52:28,023	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:52:28,025	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@2e3967ea
+ERROR	2022-03-29 13:54:53,639	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser1","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser1' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:54:53,640	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+ERROR	2022-03-29 13:55:18,150	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser1","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser1' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:55:18,150	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+ERROR	2022-03-29 13:55:38,215	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser1","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser1' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:55:38,216	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+ERROR	2022-03-29 13:56:37,331	59116	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 already exists; Asset asset1 already exists
+ERROR	2022-03-29 13:57:23,496	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser1","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser1' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:57:23,497	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+ERROR	2022-03-29 13:57:44,296	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser1","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser1' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 13:57:44,296	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+ERROR	2022-03-29 13:58:21,028	36732	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 already exists; Asset asset1 already exists
+ERROR	2022-03-29 13:58:47,401	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 already exists; Asset asset1 already exists
+ERROR	2022-03-29 14:04:21,514	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 already exists; Asset asset1 already exists
+ERROR	2022-03-29 14:05:35,416	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset13 already exists; Asset asset13 already exists
+ERROR	2022-03-29 14:23:27,598	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser1","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser1' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-29 14:23:27,599	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@2e3967ea
+ERROR	2022-03-30 09:05:52,024	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-03-30 09:07:03,658	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-03-30 09:14:50,792	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser2","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser2' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-30 09:14:50,794	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@2e3967ea
+ERROR	2022-03-30 21:16:11,039	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-03-31 06:21:09,241	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser3","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser3' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-03-31 06:21:09,242	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@2e3967ea
+ERROR	2022-04-01 08:30:42,823	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+org.apache.http.conn.HttpHostConnectException: Connect to localhost:7054 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:156)
+	at org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:376)
+	at org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:393)
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186)
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89)
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:56)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.httpPost(HFCAClient.java:1326)
+	at org.hyperledger.fabric_ca.sdk.HFCAClient.enroll(HFCAClient.java:478)
+	at application.java.EnrollAdmin.main(EnrollAdmin.java:48)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:350)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:607)
+	at org.apache.http.conn.ssl.SSLSocketFactory.connectSocket(SSLSocketFactory.java:543)
+	at org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:142)
+	... 12 more
+ERROR	2022-04-01 08:45:04,109	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser4","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser4' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-04-01 08:45:04,111	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@f09733f
+ERROR	2022-04-01 08:55:57,053	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,452	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,474	22	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,498	46	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,518	66	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,543	91	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,562	110	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,580	128	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,605	153	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,627	175	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,645	193	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,667	215	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,688	236	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,705	253	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,724	272	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,743	291	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,761	309	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,778	326	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,799	347	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,818	366	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,837	385	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,857	405	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,873	421	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,889	437	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,905	453	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,923	471	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,942	490	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,962	510	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:02,981	529	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,000	548	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,019	567	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,037	585	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,053	601	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,068	616	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,085	633	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,099	647	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,113	661	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,127	675	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,147	695	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,166	714	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,192	740	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,211	759	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,229	777	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,244	792	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,259	807	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,272	820	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,287	835	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,301	849	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,317	865	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,331	879	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,348	896	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,367	915	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,383	931	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,402	950	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,418	966	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,443	991	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,458	1006	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,474	1022	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,488	1036	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,508	1056	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,529	1077	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,568	1116	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,595	1143	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,617	1165	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,643	1191	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,669	1217	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,686	1234	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,708	1256	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,741	1289	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,766	1314	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,790	1338	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,822	1370	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,848	1396	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,878	1426	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,901	1449	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,922	1470	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,947	1495	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,974	1522	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:03,998	1546	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,022	1570	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,051	1599	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,077	1625	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,104	1652	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,125	1673	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,168	1716	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,201	1749	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,230	1778	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,257	1805	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,283	1831	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,304	1852	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,324	1872	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,351	1899	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,375	1923	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,400	1948	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,422	1970	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,442	1990	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,461	2009	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,481	2029	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,498	2046	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,516	2064	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,534	2082	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,552	2100	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,573	2121	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,593	2141	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,618	2166	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,641	2189	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,678	2226	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,699	2247	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,720	2268	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,742	2290	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,761	2309	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,783	2331	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,816	2364	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,864	2412	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,884	2432	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,903	2451	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,936	2484	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,957	2505	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,975	2523	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:04,992	2540	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,010	2558	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,028	2576	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,044	2592	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,062	2610	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,082	2630	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,100	2648	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,121	2669	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,143	2691	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,164	2712	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,184	2732	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,210	2758	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,237	2785	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,254	2802	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,272	2820	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,287	2835	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,306	2854	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,323	2871	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,340	2888	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,359	2907	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,377	2925	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,396	2944	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,414	2962	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,440	2988	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,460	3008	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,482	3030	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,508	3056	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,529	3077	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,548	3096	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,573	3121	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,590	3138	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,609	3157	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,631	3179	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,648	3196	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,667	3215	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,685	3233	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,706	3254	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,723	3271	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,752	3300	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,774	3322	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,793	3341	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,816	3364	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,835	3383	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,854	3402	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,876	3424	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,894	3442	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,917	3465	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,936	3484	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,955	3503	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,973	3521	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:05,999	3547	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,025	3573	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,045	3593	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,063	3611	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,080	3628	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,096	3644	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,111	3659	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,128	3676	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,146	3694	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,162	3710	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,180	3728	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,196	3744	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:06,213	3761	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,471	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,504	33	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,536	65	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,569	98	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,595	124	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,616	145	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,634	163	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,658	187	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,681	210	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,704	233	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,726	255	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,745	274	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,766	295	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,789	318	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,809	338	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,827	356	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,850	379	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,877	406	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,901	430	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,926	455	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,955	484	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:34,982	511	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,019	548	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,053	582	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,091	620	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,114	643	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,136	665	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,156	685	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,176	705	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,199	728	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,227	756	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,260	789	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,284	813	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,310	839	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,338	867	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,365	894	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,398	927	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,429	958	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,456	985	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,485	1014	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,521	1050	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,567	1096	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,593	1122	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,617	1146	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,642	1171	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,666	1195	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,698	1227	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,735	1264	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,760	1289	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,782	1311	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,811	1340	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,841	1370	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,869	1398	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,892	1421	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,934	1463	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,971	1500	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:35,995	1524	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,022	1551	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,056	1585	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,088	1617	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,123	1652	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,146	1675	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,170	1699	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,194	1723	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,217	1746	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,239	1768	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,271	1800	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,296	1825	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,324	1853	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,350	1879	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,374	1903	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,413	1942	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,456	1985	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,490	2019	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,513	2042	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,538	2067	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,560	2089	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,582	2111	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,606	2135	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,649	2178	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,682	2211	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,701	2230	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,726	2255	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,748	2277	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,773	2302	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,797	2326	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,822	2351	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,841	2370	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,864	2393	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,884	2413	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,910	2439	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,941	2470	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:36,975	2504	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,000	2529	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,024	2553	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,045	2574	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,066	2595	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,090	2619	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,110	2639	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,131	2660	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,151	2680	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,170	2699	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,192	2721	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,211	2740	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,232	2761	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,259	2788	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,286	2815	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,311	2840	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,339	2868	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,381	2910	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,432	2961	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,471	3000	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,540	3069	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,572	3101	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,594	3123	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,620	3149	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,641	3170	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,664	3193	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,687	3216	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,708	3237	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,727	3256	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,743	3272	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,765	3294	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,782	3311	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,816	3345	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,832	3361	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,851	3380	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,873	3402	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,897	3426	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,923	3452	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,943	3472	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,972	3501	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:37,993	3522	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,021	3550	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,058	3587	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,081	3610	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,104	3633	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,127	3656	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,144	3673	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,158	3687	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,176	3705	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,195	3724	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,215	3744	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,233	3762	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,250	3779	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,268	3797	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,284	3813	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,307	3836	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,326	3855	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,346	3875	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,360	3889	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,376	3905	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,394	3923	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,412	3941	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,430	3959	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,444	3973	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,463	3992	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,481	4010	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,501	4030	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,523	4052	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,541	4070	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,557	4086	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,573	4102	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,589	4118	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,607	4136	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,625	4154	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,642	4171	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,657	4186	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,679	4208	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,703	4232	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,721	4250	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,738	4267	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,754	4283	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,769	4298	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,785	4314	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,804	4333	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,822	4351	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,844	4373	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,860	4389	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,879	4408	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,921	4450	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,938	4467	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,956	4485	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,974	4503	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:38,993	4522	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,012	4541	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,026	4555	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,042	4571	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,056	4585	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,071	4600	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,088	4617	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,107	4636	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,126	4655	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,143	4672	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,164	4693	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,186	4715	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,203	4732	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,219	4748	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,235	4764	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,256	4785	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,281	4810	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,300	4829	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,317	4846	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,332	4861	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,353	4882	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,368	4897	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,385	4914	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,407	4936	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,427	4956	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,451	4980	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,470	4999	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,489	5018	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,508	5037	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,522	5051	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,538	5067	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,556	5085	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,574	5103	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,591	5120	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,612	5141	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,635	5164	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,661	5190	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,681	5210	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,708	5237	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,730	5259	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,757	5286	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,774	5303	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,800	5329	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,819	5348	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,842	5371	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,859	5388	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,882	5411	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,908	5437	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,924	5453	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,941	5470	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,960	5489	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,978	5507	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:39,998	5527	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:40,020	5549	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:40,041	5570	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:40,062	5591	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:40,089	5618	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 08:57:40,108	5637	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 09:01:32,852	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 09:03:36,683	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+>>>>>>> Stashed changes
+ERROR	2022-04-01 10:29:20,490	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-04-01 10:29:20,492	2	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@413d1baf
+ERROR	2022-04-01 10:33:09,310	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset1 does not exist; Asset asset1 does not exist
+ERROR	2022-04-01 10:41:47,706	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset13 already exists; Asset asset13 already exists
+ERROR	2022-04-01 11:36:53,890	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset asset14 already exists; Asset asset14 already exists
+ERROR	2022-04-01 11:53:09,464	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
+ERROR	2022-04-01 11:58:40,295	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset blablabla already exists; Asset blablabla already exists
+ERROR	2022-04-01 12:02:34,913	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset blablabla already exists; Asset blablabla already exists
+ERROR	2022-04-01 12:04:00,423	85510	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
+ERROR	2022-04-01 12:05:47,021	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset blablabla already exists; Asset blablabla already exists
+ERROR	2022-04-01 12:08:11,012	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset blablabla already exists; Asset blablabla already exists
+ERROR	2022-04-01 12:15:22,044	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset akgfjbalkgfhab does not exist; Asset akgfjbalkgfhab does not exist
+ERROR	2022-04-01 12:16:57,797	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset sdgjsgsa does not exist; Asset sdgjsgsa does not exist
+ERROR	2022-04-01 12:25:07,561	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser8","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser8' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-04-01 12:25:07,565	4	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@1a75e76a
+ERROR	2022-04-01 14:00:47,302	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
+ERROR	2022-04-01 14:01:20,455	33153	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
+ERROR	2022-04-01 14:02:37,660	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error

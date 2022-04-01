@@ -14,7 +14,6 @@ import org.hyperledger.fabric.contract.annotation.Contact;
 import org.hyperledger.fabric.contract.annotation.Contract;
 import org.hyperledger.fabric.contract.annotation.Default;
 import org.hyperledger.fabric.contract.annotation.Info;
-import org.hyperledger.fabric.contract.annotation.License;
 import org.hyperledger.fabric.contract.annotation.Transaction;
 import org.hyperledger.fabric.shim.ChaincodeException;
 import org.hyperledger.fabric.shim.ChaincodeStub;
@@ -25,17 +24,7 @@ import com.owlike.genson.Genson;
 
 @Contract(
         name = "basic",
-        info = @Info(
-                title = "Asset Transfer",
-                description = "The hyperlegendary asset transfer",
-                version = "0.0.1-SNAPSHOT",
-                license = @License(
-                        name = "Apache 2.0 License",
-                        url = "http://www.apache.org/licenses/LICENSE-2.0.html"),
-                contact = @Contact(
-                        email = "a.transfer@example.com",
-                        name = "Adrian Transfer",
-                        url = "https://hyperledger.example.com")))
+        info = @Info (contact = @Contact( name = "Ja")))
 @Default
 public final class AssetTransfer implements ContractInterface {
 
@@ -44,23 +33,6 @@ public final class AssetTransfer implements ContractInterface {
     private enum AssetTransferErrors {
         ASSET_NOT_FOUND,
         ASSET_ALREADY_EXISTS
-    }
-
-    /**
-     * Creates some initial assets on the ledger.
-     *
-     * @param ctx the transaction context
-     */
-    @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public void InitLedger(final Context ctx) {
-        ChaincodeStub stub = ctx.getStub();
-
-        CreateAsset(ctx, "asset1", "Tomoko", 300);
-        CreateAsset(ctx, "asset2", "Brad", 400);
-        CreateAsset(ctx, "asset3", "Jin Soo", 500);
-        CreateAsset(ctx, "asset4", "Max", 600);
-        CreateAsset(ctx, "asset5", "Adrian", 700);
-        CreateAsset(ctx, "asset6", "Michel", 700);
     }
 
     /**
@@ -79,8 +51,7 @@ public final class AssetTransfer implements ContractInterface {
 
         if (AssetExists(ctx, productID)) {
             String errorMessage = String.format("Asset %s already exists", productID);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
+            throw new ChaincodeException(errorMessage,AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
         }
 
         Asset asset = new Asset(productID,owner, appraisedValue);
