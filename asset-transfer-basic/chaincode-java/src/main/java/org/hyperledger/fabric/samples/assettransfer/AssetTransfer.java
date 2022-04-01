@@ -80,7 +80,7 @@ public final class AssetTransfer implements ContractInterface {
         if (AssetExists(ctx, productID)) {
             String errorMessage = String.format("Asset %s already exists", productID);
             System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
+            throw new ChaincodeException(errorMessage,AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
         }
 
         Asset asset = new Asset(productID,owner, appraisedValue);

@@ -1,7 +1,7 @@
 package application.java;
 
 public class Constants {
-    public static final String APP_USER = "appUser";
+    public static final String APP_USER = "appUser8";
     public static final String ADMIN = "admin";
     public static final String DEPARTMENT_1 = "org1.department1";
     public static final String ORG_1_MSP = "Org1MSP";

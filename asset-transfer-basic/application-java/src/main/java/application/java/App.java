@@ -11,11 +11,12 @@ package application.java;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import org.hyperledger.fabric.gateway.Contract;
-import org.hyperledger.fabric.gateway.Gateway;
-import org.hyperledger.fabric.gateway.Network;
-import org.hyperledger.fabric.gateway.Wallet;
-import org.hyperledger.fabric.gateway.Wallets;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
+
+import org.hyperledger.fabric.gateway.*;
 
 
 public class App {
@@ -33,12 +34,16 @@ public class App {
 		Path networkConfigPath = Paths.get("..", "test-network", "organizations", "peerOrganizations", "org1.example.com", "connection-org1.yaml");
 
 		Gateway.Builder builder = Gateway.createBuilder();
+
 		builder.identity(wallet, Constants.APP_USER).networkConfig(networkConfigPath).discovery(true);
+
 		return builder.connect();
 	}
 
+	private static final int DEFAULT_USER_CHOICE = 0;
+
 	public static void main(String[] args) throws Exception {
-		// enrolls the admin and registers the user
+//		 enrolls the admin and registers the user
 		try {
 			EnrollAdmin.main(null);
 			RegisterUser.main(null);
@@ -48,69 +53,72 @@ public class App {
 
 		// connect to the network and invoke the smart contract
 		try (Gateway gateway = connect()) {
+				startContract(gateway);
+		}
+	}
 
-			// get the network and contract
-			Network network = gateway.getNetwork(Constants.CHANNEL);
-			Contract contract = network.getContract(Constants.CONTRACT);
 
-			byte[] result;
+	private static void startContract(Gateway gateway) throws ContractException, InterruptedException, TimeoutException {
+		int DEFAULT_USER_CHOICE = 0;
+		Network network = gateway.getNetwork(Constants.CHANNEL);
+		Contract contract = network.getContract(Constants.CONTRACT);
+		byte[] result;
 
-			System.out.println("Submit Transaction: " + Constants.INIT_LEDGER + " creates the initial set of assets on the ledger.");
-			contract.submitTransaction(Constants.INIT_LEDGER);
+		Scanner scanner = new Scanner(System.in);
+		int userChoice = getUserInput(scanner);
 
-			System.out.println("\n");
-			result = contract.evaluateTransaction(Constants.GET_ALL_ASSETS);
-			System.out.println("Evaluate Transaction: " + Constants.GET_ALL_ASSETS + ", result: " + new String(result));
+		if(userChoice == DEFAULT_USER_CHOICE){
+			scanner.close();
+			System.out.println("You are about to exit. Good bye :)");
+			return;
+		}
 
-			System.out.println("\n");
-			System.out.println("Submit Transaction: " + Constants.CREATE_ASSET + " asset13");
-			//CreateAsset creates an asset with ID asset13, color yellow, owner Tom, size 5 and appraisedValue of 1300
-			contract.submitTransaction(Constants.CREATE_ASSET, "asset13", "yellow", "5", "Tom", "1300");
 
-			System.out.println("\n");
-			System.out.println("Evaluate Transaction: " + Constants.READ_ASSET + " asset13");
-			// ReadAsset returns an asset with given assetID
-			result = contract.evaluateTransaction(Constants.READ_ASSET, "asset13");
-			System.out.println("result: " + new String(result));
-
-			System.out.println("\n");
-			System.out.println("Evaluate Transaction: " + Constants.ASSET_EXISTS + " asset1");
-			// AssetExists returns "true" if an asset with given assetID exist
-			result = contract.evaluateTransaction(Constants.ASSET_EXISTS, "asset1");
-			System.out.println("result: " + new String(result));
-
-			System.out.println("\n");
-			System.out.println("Submit Transaction: " + Constants.UPDATE_ASSET + " asset1, new Price : 350");
-			// UpdateAsset updates an existing asset with new properties. Same args as CreateAsset
-			contract.submitTransaction(Constants.UPDATE_ASSET, "asset1", "blue", "5", "Tomoko", "350");
-
-			System.out.println("\n");
-			System.out.println("Evaluate Transaction: " + Constants.READ_ASSET + " asset1");
-			result = contract.evaluateTransaction(Constants.READ_ASSET, "asset1");
-			System.out.println("result: " + new String(result));
-
-			try {
-				System.out.println("\n");
-				System.out.println("Submit Transaction: " + Constants.UPDATE_ASSET + " asset1");
-				//Non existing asset asset70 should throw Error
-				contract.submitTransaction(Constants.UPDATE_ASSET, "asset1", "blue", "5", "Tomoko", "300");
-			} catch (Exception e) {
-				System.err.println("Expected an error on " + Constants.UPDATE_ASSET + " of non-existing Asset: " + e);
+		while (userChoice != DEFAULT_USER_CHOICE) {
+			switch (userChoice) {
+				case 1:
+					contract.submitTransaction("CreateAsset", "asset14", "Tom", "1300");
+					System.out.println("Submit Transaction: CreateAsset asset13");
+					break;
+				case 2:
+					result = contract.evaluateTransaction("GetAllAssets");
+					System.out.println("Evaluate Transaction: GetAllAssets, result: " + new String(result));
+					break;
+				case 3:
+					result = contract.evaluateTransaction("ReadAsset", "asset13");
+					System.out.println("result: " + new String(result));
+					break;
+				case 4:
+					contract.submitTransaction("UpdateAsset", "asset1", "Tomoko", "350");
+					System.out.println("Asset updated");
+					break;
 			}
-
-			System.out.println("\n");
-			System.out.println("Submit Transaction: " + Constants.TRANSFER_ASSET + " asset1 from owner Tomoko > owner Tom");
-			// TransferAsset transfers an asset with given ID to new owner Tom
-			contract.submitTransaction(Constants.TRANSFER_ASSET, "asset1", "Tom");
-
-			System.out.println("\n");
-			System.out.println("Evaluate Transaction: " + Constants.READ_ASSET + " asset1");
-			result = contract.evaluateTransaction(Constants.READ_ASSET, "asset1");
-			System.out.println("result: " + new String(result));
+			userChoice = getUserInput(scanner);
 		}
-		catch(Exception e){
-			System.err.println(e);
+		scanner.close();
+		System.out.println("Bye");
+	}
+
+
+
+	private static int getUserInput(Scanner scanner){
+
+		System.out.println("Choose what you want to do:\n1. Create asset\n2. GetAllAssets\n3. Show one asset\n4. Update asset\n0. Exit");
+		int userChoice = DEFAULT_USER_CHOICE;
+
+		try {
+			userChoice = scanner.nextInt();
+		} catch (InputMismatchException e){
+			System.out.println("You have not input integer");
+			e.printStackTrace();
+		} catch (NoSuchElementException e){
+			System.out.println("You have not input any value");
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			System.out.println("Scanner is closed");
+			e.printStackTrace();
 		}
 
+		return userChoice;
 	}
 }
