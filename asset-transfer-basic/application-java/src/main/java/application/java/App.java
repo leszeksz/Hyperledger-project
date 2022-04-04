@@ -54,6 +54,7 @@ public class App {
 		// connect to the network and invoke the smart contract
 		try (Gateway gateway = connect()) {
 				startContract(gateway);
+				startDistributionContract(gateway);
 		}
 	}
 
@@ -87,11 +88,58 @@ public class App {
 					break;
 				case 4:
 					updateAsset(contract, scanner);
+				case 5:
+					deleteAsset(contract, scanner);
+				case 6:
+					transferAsset(contract, scanner);
 			}
 			userChoice = getUserInput(scanner);
 		}
 		scanner.close();
 		System.out.println("Bye");
+	}
+
+	private static void startDistributionContract(Gateway gateway) throws InterruptedException, TimeoutException {
+		int DEFAULT_USER_CHOICE = 0;
+		Network network = gateway.getNetwork(Constants.CHANNEL);
+		Contract contract = network.getContract(Constants.CONTRACT);
+
+		Scanner scanner = new Scanner(System.in);
+		int userChoice = DistributionService.getDistributionMenu(scanner);
+
+		if(userChoice == DEFAULT_USER_CHOICE){
+			scanner.close();
+			System.out.println("You are about to exit. Good bye :)");
+			return;
+		}
+
+		DistributionService.getUserInput(userChoice, contract, scanner);
+		scanner.close();
+		System.out.println("Bye");
+	}
+
+	private static void deleteAsset(Contract contract, Scanner scanner) throws InterruptedException, TimeoutException {
+		System.out.println("Enter the product id you want to delete:");
+		String productIdToDelete = scanner.next();
+		try {
+			contract.submitTransaction("DeleteAsset", productIdToDelete);
+			System.out.println("Asset updated");
+		} catch (ContractException exception){
+			System.out.println("Invalid product Id");
+		}
+	}
+
+	private static void transferAsset(Contract contract, Scanner scanner) throws InterruptedException, TimeoutException {
+		System.out.println("Enter the product id owner you want to change:");
+		String productIdToTransfer = scanner.next();
+		System.out.println("Enter new owner:");
+		String newOwner = scanner.next();
+		try {
+			contract.submitTransaction("TransferAsset", productIdToTransfer, newOwner);
+			System.out.println("Asset updated");
+		} catch (ContractException exception){
+			System.out.println("Invalid product Id");
+		}
 	}
 
 	private static void updateAsset(Contract contract, Scanner scanner) throws TimeoutException, InterruptedException {
@@ -108,7 +156,7 @@ public class App {
 		try {
 			contract.submitTransaction("UpdateAsset", productIdToChange, ownerToChange, priceToChange);
 			System.out.println("Asset updated");
-		}catch (ContractException exception){
+		} catch (ContractException exception){
 			System.out.println("Invalid product Id");
 		}
 	}
@@ -120,7 +168,7 @@ public class App {
 		try {
 			result = contract.evaluateTransaction("ReadAsset", productName);
 			System.out.println("result: " + new String(result));
-		}catch (ContractException exception){
+		} catch (ContractException exception){
 			System.out.println("Can't find asset with id: " + productName);
 		}
 	}
@@ -145,14 +193,14 @@ public class App {
 		try {
 			contract.submitTransaction("CreateAsset", productId, owner, price);
 			System.out.println("Submit Transaction: CreateAsset " + productId);
-		}catch (ContractException exception){
+		} catch (ContractException exception){
 			System.out.println("Something went wrong. Try again.");
 		}
 	}
 
 	private static int getUserInput(Scanner scanner){
 
-		System.out.println("Choose what you want to do:\n1. Create asset\n2. GetAllAssets\n3. Show one asset\n4. Update asset\n0. Exit");
+		System.out.println("Choose what you want to do:\n1. Create asset\n2. GetAllAssets\n3. Show one asset\n4. Update asset\n5. Delete asset\n6. Change owner\n0. Exit");
 		int userChoice = DEFAULT_USER_CHOICE;
 
 		try {
@@ -169,10 +217,11 @@ public class App {
 		}
 		return userChoice;
 	}
+
 	private static boolean validatePrice(String price){
 		int number = Integer.parseInt(price);
 		if (number < 0){
 			return false;
-		}else return true;
+		} else return true;
 	}
 }
