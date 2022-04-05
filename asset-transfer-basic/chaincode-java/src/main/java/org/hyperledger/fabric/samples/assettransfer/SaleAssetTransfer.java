@@ -1,4 +1,4 @@
-package saleassettransfer;
+package org.hyperledger.fabric.samples.assettransfer;
 
 import com.owlike.genson.Genson;
 import org.hyperledger.fabric.contract.Context;
@@ -15,7 +15,7 @@ import java.util.List;
 @Contract(
         name = "sale_asset",
         info = @Info(contact = @Contact( name = "Ja")))
-@Default
+
 public final class SaleAssetTransfer implements ContractInterface {
 
     private final Genson genson = new Genson();
@@ -27,7 +27,7 @@ public final class SaleAssetTransfer implements ContractInterface {
 
     @Transaction(intent = Transaction.TYPE.SUBMIT)
     public SaleAsset CreateSaleAsset(final Context ctx, final String saleID, final String owner,
-                                     final String product, final int quantity, final String contractor) {
+                             final String product, final int quantity, final String contractor) {
         ChaincodeStub stub = ctx.getStub();
 
         if (AssetExists(ctx, saleID)) {
@@ -42,7 +42,7 @@ public final class SaleAssetTransfer implements ContractInterface {
         return saleAsset;
     }
     @Transaction(intent = Transaction.TYPE.EVALUATE)
-    public boolean AssetExists(final Context ctx, final String saleID) {
+    public static boolean AssetExists(final Context ctx, final String saleID) {
         ChaincodeStub stub = ctx.getStub();
         String assetJSON = stub.getStringState(saleID);
 

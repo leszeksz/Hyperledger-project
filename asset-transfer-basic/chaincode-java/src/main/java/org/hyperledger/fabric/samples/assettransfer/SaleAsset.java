@@ -1,4 +1,4 @@
-package saleassettransfer;
+package org.hyperledger.fabric.samples.assettransfer;
 
 import com.owlike.genson.annotation.JsonProperty;
 import org.hyperledger.fabric.contract.annotation.DataType;
@@ -40,7 +40,7 @@ public final class SaleAsset {
         return contractor;
     }
 
-    public SaleAsset(@JsonProperty("saleId") final String saleID, @JsonProperty("owner") final String owner, @JsonProperty("product") final String product, @JsonProperty("quantity") final int quantity, @JsonProperty("contractor") final String contractor) {
+    public SaleAsset(@JsonProperty("saleId") final String saleID,@JsonProperty("owner") final String owner, @JsonProperty("product") final String product,@JsonProperty("quantity") final int quantity,@JsonProperty("contractor") final String contractor) {
         this.saleID = saleID;
         this.owner = owner;
         this.product = product;

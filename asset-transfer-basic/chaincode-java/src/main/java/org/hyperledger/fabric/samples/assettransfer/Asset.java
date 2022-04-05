@@ -45,13 +45,9 @@ public final class Asset {
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
+        if (this == obj) return true;
 
-        if ((obj == null) || (getClass() != obj.getClass())) {
-            return false;
-        }
+        if ((obj == null) || (getClass() != obj.getClass())) return false;
 
         Asset other = (Asset) obj;
 
@@ -62,11 +58,15 @@ public final class Asset {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProductID(),getOwner());
+        return Objects.hash(getProductID(),getOwner(), getPrice());
     }
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) + " [productID=" + productID + ", owner=" + owner + ", price=" + price + "]";
+        return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) +
+                " [productID=" + productID +
+                ", owner=" + owner +
+                ", price=" + price +
+                "]";
     }
 }
