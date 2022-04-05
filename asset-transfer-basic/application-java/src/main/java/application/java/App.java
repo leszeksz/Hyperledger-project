@@ -87,11 +87,42 @@ public class App {
 					break;
 				case 4:
 					updateAsset(contract, scanner);
+					break;
+				case 5:
+					deleteAsset(contract, scanner);
+					break;
+				case 6:
+					transferAsset(contract, scanner);
+					break;
 			}
 			userChoice = getUserInput(scanner);
 		}
 		scanner.close();
 		System.out.println("Bye");
+	}
+
+	private static void deleteAsset(Contract contract, Scanner scanner) throws InterruptedException, TimeoutException{
+		System.out.println("Enter the product id you want to delete:");
+		String productIdToDelete = scanner.next();
+		try {
+			contract.submitTransaction("DeleteAsset", productIdToDelete);
+			System.out.println("Asset deleted");
+		} catch (ContractException exception){
+			System.out.println("Invalid product Id");
+		}
+	}
+
+	private static void transferAsset(Contract contract, Scanner scanner) throws InterruptedException, TimeoutException {
+		System.out.println("Enter the product id owner you want to change:");
+		String productIdToTransfer = scanner.next();
+		System.out.println("Enter new owner:");
+		String newOwner = scanner.next();
+		try {
+			contract.submitTransaction("TransferAsset", productIdToTransfer, newOwner);
+			System.out.println("Asset updated");
+		} catch (ContractException exception){
+			System.out.println("Invalid product Id");
+		}
 	}
 
 	private static void updateAsset(Contract contract, Scanner scanner) throws TimeoutException, InterruptedException {
@@ -152,7 +183,7 @@ public class App {
 
 	private static int getUserInput(Scanner scanner){
 
-		System.out.println("Choose what you want to do:\n1. Create asset\n2. GetAllAssets\n3. Show one asset\n4. Update asset\n0. Exit");
+		System.out.println("Choose what you want to do:\n1. Create asset\n2. GetAllAssets\n3. Show one asset\n4. Update asset\n5. Delete asset\n6. Transfer Asset\n0. Exit");
 		int userChoice = DEFAULT_USER_CHOICE;
 
 		try {
