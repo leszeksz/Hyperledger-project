@@ -54,7 +54,7 @@ public class App {
 		// connect to the network and invoke the smart contract
 		try (Gateway gateway = connect()) {
 				startContract(gateway);
-				startDistributionContract(gateway);
+//				startDistributionContract(gateway);
 		}
 	}
 

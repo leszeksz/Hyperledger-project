@@ -15,7 +15,7 @@ import java.util.List;
 @Contract(
         name = "sale_asset",
         info = @Info(contact = @Contact( name = "Ja")))
-@Default
+
 public final class SaleAssetTransfer implements ContractInterface {
 
     private final Genson genson = new Genson();
@@ -42,7 +42,7 @@ public final class SaleAssetTransfer implements ContractInterface {
         return saleAsset;
     }
     @Transaction(intent = Transaction.TYPE.EVALUATE)
-    public boolean AssetExists(final Context ctx, final String saleID) {
+    public static boolean AssetExists(final Context ctx, final String saleID) {
         ChaincodeStub stub = ctx.getStub();
         String assetJSON = stub.getStringState(saleID);
 

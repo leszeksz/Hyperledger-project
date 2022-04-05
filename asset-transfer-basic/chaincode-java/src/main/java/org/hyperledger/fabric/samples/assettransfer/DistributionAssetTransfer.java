@@ -23,7 +23,7 @@ import java.util.List;
                         url = "http://www.apache.org/licenses/LICENSE-2.0.html"),
                 contact = @Contact(
                         name = "Distribution Transfer")))
-@Default
+
 public class DistributionAssetTransfer implements ContractInterface {
 
     private final Genson genson = new Genson();
@@ -55,7 +55,7 @@ public class DistributionAssetTransfer implements ContractInterface {
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, DistributionAssetTransfer.DistributionTransferErrors.DISTRIBUTION_ALREADY_EXISTS.toString());
         }
-        if(!SalesAssetTransfer.SalesExists(ctx, salesId)){
+        if(!SaleAssetTransfer.AssetExists(ctx, salesId)){
             String errorMessage = String.format("Sales %s does not exists", distributionId);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, DistributionAssetTransfer.DistributionTransferErrors.SALES_DOES_NOT_EXISTS.toString());
