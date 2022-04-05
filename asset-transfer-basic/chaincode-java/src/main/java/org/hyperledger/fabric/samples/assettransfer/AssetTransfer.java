@@ -41,12 +41,12 @@ public final class AssetTransfer implements ContractInterface {
      * @param ctx the transaction context
      * @param productID the ID of the new asset
      * @param owner the owner of the new asset
-     * @param appraisedValue the appraisedValue of the new asset
+     * @param price the price of the new asset
      * @return the created asset
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
     public Asset CreateAsset(final Context ctx, final String productID,
-        final String owner, final int appraisedValue) {
+        final String owner, final int price) {
         ChaincodeStub stub = ctx.getStub();
 
         if (AssetExists(ctx, productID)) {
@@ -54,7 +54,7 @@ public final class AssetTransfer implements ContractInterface {
             throw new ChaincodeException(errorMessage,AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
         }
 
-        Asset asset = new Asset(productID,owner, appraisedValue);
+        Asset asset = new Asset(productID,owner, price);
         //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(asset);
         stub.putStringState(productID, sortedJson);
@@ -90,12 +90,12 @@ public final class AssetTransfer implements ContractInterface {
      * @param ctx the transaction context
      * @param productID the ID of the asset being updated
      * @param owner the owner of the asset being updated
-     * @param appraisedValue the appraisedValue of the asset being updated
+     * @param price the price of the asset being updated
      * @return the transferred asset
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
     public Asset UpdateAsset(final Context ctx, final String productID,
-        final String owner, final int appraisedValue) {
+        final String owner, final int price) {
         ChaincodeStub stub = ctx.getStub();
 
         if (!AssetExists(ctx, productID)) {
@@ -104,7 +104,7 @@ public final class AssetTransfer implements ContractInterface {
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
         }
 
-        Asset newAsset = new Asset(productID, owner, appraisedValue);
+        Asset newAsset = new Asset(productID, owner, price);
         //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string
         String sortedJson = genson.serialize(newAsset);
         stub.putStringState(productID, sortedJson);
