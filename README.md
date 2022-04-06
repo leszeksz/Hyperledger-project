@@ -12,9 +12,13 @@
 
 7. Run the application with App.java (asset-transfer-basic\application-java\src\main\java\application\java\App.java)
 
-8. Close the network from "test_network" with script: "./network.sh down"
+8. In file .../explorer/first-network.json update adminPrivateKey in line 32
 
+9. From explorer directory use: "docker-compose up -d"
 
+10. Close after finished work: "docker-compose down -v"
+
+11. Close the network from "test_network" with script: "./network.sh down"
 
 If you want to start over by closing the network and bringing it up again you have to delete "**wallet**" folder from directory "asset-transfer-basic" and 
 "**ordererOrganizations**" + "**peerOrganizations**" folders from directory "test-network\organizations" because new credentials and wallet will be generated again.
