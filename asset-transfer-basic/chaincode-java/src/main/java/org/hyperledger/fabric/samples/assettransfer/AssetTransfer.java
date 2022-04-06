@@ -180,6 +180,137 @@ public final class AssetTransfer implements ContractInterface {
         return response;
     }
 
+    /**
+     * Creates a new distribution on the ledger.
+     *
+     * @param ctx the transaction context
+     * @param owner the owner of the new distribution
+     * @param distributionId the ID of the new distribution
+     * @param quantity quantity of distributed assets
+     * @param location the location of shipping
+     * @param shippingCost cost of shipping
+     * @return the created distribution of assets
+     */
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public DistributionAsset CreateDistribution(final Context ctx, final String distributionId, final String owner, final String salesId, final String productId, final int quantity, final String shipper, final String location, final int shippingCost){
+        ChaincodeStub stub = ctx.getStub();
+        checkAssetAlreadyExists(ctx, distributionId, "Distribution %s already exists");
+        DistributionAsset asset = new DistributionAsset(owner, salesId, distributionId, productId, quantity, shipper, location, shippingCost);
+        //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string
+        serialize(stub,asset,distributionId);
+
+        return asset;
+    }
+
+    /**
+     * Checks the existence of the distribution on the ledger
+     *
+     * @param ctx the transaction context
+     * @param distributionId the ID of the distribution to check
+     * @return boolean indicating the existence of the distribution
+     */
+    @Transaction(intent = Transaction.TYPE.EVALUATE)
+    public static boolean DistributionExists(final Context ctx, final String distributionId) {
+        ChaincodeStub stub = ctx.getStub();
+        String assetJSON = stub.getStringState(distributionId);
+
+        return (assetJSON != null && !assetJSON.isEmpty());
+    }
+
+    /**
+     * Retrieves an distribution with the specified ID from the ledger.
+     *
+     * @param ctx the transaction context
+     * @param distributionId the ID of the distribution to retrieve
+     * @return the distribution found on the ledger if there was one
+     */
+    @Transaction(intent = Transaction.TYPE.EVALUATE)
+    public DistributionAsset ReadDistribution(final Context ctx, final String distributionId) {
+        ChaincodeStub stub = ctx.getStub();
+        String distributionJSON = stub.getStringState(distributionId);
+        checkIfAssetExist(distributionJSON == null || distributionJSON.isEmpty(), distributionId);
+        DistributionAsset distribution = genson.deserialize(distributionJSON, DistributionAsset.class);
+
+        return distribution;
+    }
+
+    /**
+     * Updates the properties of an distribution on the ledger.
+     *
+     * @param ctx the transaction context
+     * @param distributionId the ID of the distribution to update
+     * @param location the owner of the new distribution
+     * @return the created distribution
+     */
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public DistributionAsset UpdateDistribution(final Context ctx, final String distributionId, final String owner, final String salesId, final String productId, final int quantity, final String shipper, final String location, final int shippingCost) {
+        ChaincodeStub stub = ctx.getStub();
+        checkIfAssetExist(!DistributionExists(ctx, distributionId), distributionId);
+        DistributionAsset newAsset = new DistributionAsset(owner, salesId, distributionId, productId,
+                quantity, shipper, location, shippingCost);
+        serialize(stub, newAsset, distributionId);
+
+        return newAsset;
+    }
+
+    /**
+     * Deletes distribution on the ledger.
+     *
+     * @param ctx the transaction context
+     * @param distributionId the ID of the distribution being deleted
+     */
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public void DeleteDistribution(final Context ctx, final String distributionId) {
+        ChaincodeStub stub = ctx.getStub();
+        checkIfAssetExist(!DistributionExists(ctx, distributionId), distributionId);
+        stub.delState(distributionId);
+    }
+
+    /**
+     * Changes the shipper of a distribution on the ledger.
+     *
+     * @param ctx the transaction context
+     * @param distributionId the ID of the asset being transferred
+     * @param newOwner the new owner of distribution
+     * @return the old owner
+     */
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public String TransferDistribution(final Context ctx, final String distributionId, final String newOwner) {
+        ChaincodeStub stub = ctx.getStub();
+        String distributionJSON = stub.getStringState(distributionId);
+        checkIfAssetExist(distributionJSON == null || distributionJSON.isEmpty(), distributionId);
+        DistributionAsset asset = genson.deserialize(distributionJSON, DistributionAsset.class);
+        DistributionAsset newAsset = new DistributionAsset(newOwner, asset.getSalesId(), asset.getDistributionId(), asset.getProductId(),
+                asset.getQuantity(), asset.getShipper(), asset.getLocation(), asset.getShippingCost());
+        String sortedJson = genson.serialize(newAsset);
+        stub.putStringState(distributionId, sortedJson);
+
+        return newAsset.getShipper();
+    }
+
+    /**
+     * Retrieves all distributions from the ledger.
+     *
+     * @param ctx the transaction context
+     * @return array of distributions found on the ledger
+     */
+    @Transaction(intent = Transaction.TYPE.EVALUATE)
+    public String GetAllDistributions(final Context ctx) {
+        ChaincodeStub stub = ctx.getStub();
+        QueryResultsIterator<KeyValue> results = stub.getStateByRange("", "");
+        List<DistributionAsset> queryResults = new ArrayList<>();
+
+        for (KeyValue result: results) {
+            DistributionAsset asset = genson.deserialize(result.getStringValue(), DistributionAsset.class);
+            System.out.println(asset);
+            queryResults.add(asset);
+        }
+
+        final String response = genson.serialize(queryResults);
+
+        return response;
+    }
+
     @Transaction(intent = Transaction.TYPE.SUBMIT)
     public SaleAsset CreateSaleAsset(final Context ctx, final String saleID, final String owner,
                              final String product, final int quantity, final String contractor) {
@@ -256,16 +387,16 @@ public final class AssetTransfer implements ContractInterface {
         return response;
     }
 
-    private void checkAssetAlreadyExists(Context ctx, String saleID, String format) {
-        if (AssetExists(ctx, saleID)) {
-            String errorMessage = String.format(format, saleID);
+    private void checkAssetAlreadyExists(Context ctx, String assetId, String format) {
+        if (AssetExists(ctx, assetId)) {
+            String errorMessage = String.format(format, assetId);
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
         }
     }
 
-    private void checkIfAssetExist(boolean ctx, String saleID) {
+    private void checkIfAssetExist(boolean ctx, String assetId) {
         if (ctx){
-            String errorMessage = String.format("Asset %s does not exist", saleID);
+            String errorMessage = String.format("Asset %s does not exist", assetId);
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
         }
