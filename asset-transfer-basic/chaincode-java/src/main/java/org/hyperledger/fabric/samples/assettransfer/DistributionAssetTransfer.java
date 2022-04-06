@@ -13,16 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Contract(
-        name = "Distribution Transfer",
-        info = @Info(
-                title = "Distribution Transfer",
-                description = "The hyperledger distribution transfer",
-                version = "0.0.1-SNAPSHOT",
-                license = @License(
-                        name = "Apache 2.0 License",
-                        url = "http://www.apache.org/licenses/LICENSE-2.0.html"),
-                contact = @Contact(
-                        name = "Distribution Transfer")))
+        name = "DistributionAssetTransfer",
+        info = @Info(contact = @Contact(name = "Distribution_Transfer")))
 
 public class DistributionAssetTransfer implements ContractInterface {
 
@@ -55,11 +47,11 @@ public class DistributionAssetTransfer implements ContractInterface {
             System.out.println(errorMessage);
             throw new ChaincodeException(errorMessage, DistributionAssetTransfer.DistributionTransferErrors.DISTRIBUTION_ALREADY_EXISTS.toString());
         }
-        if(!SaleAssetTransfer.AssetExists(ctx, salesId)){
-            String errorMessage = String.format("Sales %s does not exists", distributionId);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, DistributionAssetTransfer.DistributionTransferErrors.SALES_DOES_NOT_EXISTS.toString());
-        }
+//        if(!SaleAssetTransfer.AssetExists(ctx, salesId)){
+//            String errorMessage = String.format("Sales %s does not exists", distributionId);
+//            System.out.println(errorMessage);
+//            throw new ChaincodeException(errorMessage, DistributionAssetTransfer.DistributionTransferErrors.SALES_DOES_NOT_EXISTS.toString());
+//        }
 
         DistributionAsset asset = new DistributionAsset(owner, salesId, distributionId, saledProductId, quantity, shipper, location, shippingCost);
         //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string

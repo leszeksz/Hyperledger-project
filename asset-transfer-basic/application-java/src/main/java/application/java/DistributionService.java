@@ -36,12 +36,13 @@ public class DistributionService {
         }
     }
 
-    public static void readDistribution(Contract contract, Scanner scanner) throws InterruptedException, TimeoutException {
+    public static void readDistribution(Contract contract, Scanner scanner) {
+        byte[] result;
         System.out.println("Enter id of distribution you want to retrieve:");
         String distributionId = scanner.next();
         try {
-            contract.submitTransaction("ReadDistribution", distributionId);
-            System.out.println("Distribution retrieved");
+            result = contract.evaluateTransaction("ReadDistribution", distributionId);
+            System.out.println("result: " + new String(result));
         } catch (ContractException exception){
             System.out.println("Something went wrong\nDistribution not retrieved");
         }
@@ -75,10 +76,11 @@ public class DistributionService {
         }
     }
 
-    public static void getAllDistribution(Contract contract) throws InterruptedException, TimeoutException {
+    public static void getAllDistribution(Contract contract) {
+        byte[] result;
         try {
-            contract.submitTransaction("GetAllDistributions");
-            System.out.println("Distributions retrieved");
+            result = contract.evaluateTransaction("GetAllDistributions");
+            System.out.println("result: " + new String(result));
         } catch (ContractException exception){
             System.out.println("Something went wrong\nDistributions not retrieved");
         }

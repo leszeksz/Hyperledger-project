@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Contract(
-        name = "sale_asset",
-        info = @Info(contact = @Contact( name = "Ja")))
+        name = "sale_transfer",
+        info = @Info(contact = @Contact( name = "Sale_Transfer")))
 
 public final class SaleAssetTransfer implements ContractInterface {
 

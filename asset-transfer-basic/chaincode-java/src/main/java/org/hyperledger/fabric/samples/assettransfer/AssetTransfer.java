@@ -23,8 +23,8 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 import com.owlike.genson.Genson;
 
 @Contract(
-        name = "basic",
-        info = @Info (contact = @Contact( name = "Ja")))
+        name = "AssetTransfer",
+        info = @Info (contact = @Contact( name = "Asset_Transfer")))
 @Default
 public final class AssetTransfer implements ContractInterface {
 
