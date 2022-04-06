@@ -10,7 +10,7 @@ import java.util.Objects;
 public class DistributionAsset {
 
     @Property()
-    private final String distributionOwner;
+    private final String owner;
 
     @Property()
     private final String salesId;
@@ -28,7 +28,7 @@ public class DistributionAsset {
     private final String shipper;
 
     @Property()
-    private final String deliveryLocation;
+    private final String location;
 
     @Property()
     private final int shippingCost;
@@ -45,8 +45,8 @@ public class DistributionAsset {
         return quantity;
     }
 
-    public String getDeliveryLocation() {
-        return deliveryLocation;
+    public String getLocation() {
+        return location;
     }
 
     public int getShippingCost() {
@@ -61,34 +61,35 @@ public class DistributionAsset {
         return salesId;
     }
 
-    public String getDistributionOwner() {
-        return distributionOwner;
+    public String getOwner() {
+        return owner;
     }
 
-    public DistributionAsset(@JsonProperty("distributionOwner") final String distributionOwner, @JsonProperty("salesId") final String salesId, @JsonProperty("distributionId") final String distributionId, @JsonProperty("productId") final String productId,
+    public DistributionAsset(@JsonProperty("owner") final String owner, @JsonProperty("salesId") final String salesId,
+                             @JsonProperty("distributionId") final String distributionId, @JsonProperty("productId") final String productId,
                              @JsonProperty("quantity") final int quantity, @JsonProperty("shipper") final String shipper,
-                             @JsonProperty("deliveryLocation") final String deliveryLocation,
+                             @JsonProperty("location") final String location,
                              @JsonProperty("shippingCost") final int shippingCost) {
-        this.distributionOwner = distributionOwner;
+        this.owner = owner;
         this.salesId = salesId;
         this.distributionId = distributionId;
         this.productId = productId;
         this.quantity = quantity;
         this.shipper = shipper;
-        this.deliveryLocation = deliveryLocation;
+        this.location = location;
         this.shippingCost = shippingCost;
     }
 
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) +
-                "[distributionOwner='" + distributionOwner +
-                ", salesId='" + salesId +
-                ", distributionId='" + distributionId +
-                ", productId='" + productId +
+                "[owner=" + owner +
+                ", salesId=" + salesId +
+                ", distributionId=" + distributionId +
+                ", productId=" + productId +
                 ", quantity=" + quantity +
-                ", shipper='" + shipper +
-                ", deliveryLocation='" + deliveryLocation +
+                ", shipper=" + shipper +
+                ", location=" + location +
                 ", shippingCost=" + shippingCost +
                 "]";
     }
@@ -102,12 +103,16 @@ public class DistributionAsset {
         DistributionAsset other = (DistributionAsset) o;
 
         return Objects.deepEquals(
-                new String[] {getDistributionOwner(), getSalesId(), getDistributionId(), getProductId(), String.valueOf(getQuantity()), getShipper(), getDeliveryLocation(), String.valueOf(getShippingCost())},
-                new String[] {other.getDistributionOwner(), other.getSalesId(), other.getDistributionId(), other.getProductId(), String.valueOf(other.getQuantity()), other.getShipper(), other.getDeliveryLocation(), String.valueOf(other.getShippingCost())});
+                new String[] {getOwner(), getSalesId(), getDistributionId(), getProductId(), getShipper(), getLocation()},
+                new String[] {other.getOwner(), other.getSalesId(), other.getDistributionId(), other.getProductId(), other.getShipper(), other.getLocation()})
+                &&
+                Objects.deepEquals(
+                new int[] {getQuantity(), getShippingCost()},
+                new int[] {other.getQuantity(), other.getShippingCost()});
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDistributionOwner(), getSalesId(), getDistributionId(), getProductId(), getQuantity(), getShipper(), getDeliveryLocation(), getShippingCost());
+        return Objects.hash(getOwner(), getSalesId(), getDistributionId(), getProductId(), getQuantity(), getShipper(), getLocation(), getShippingCost());
     }
 }

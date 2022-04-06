@@ -58,6 +58,8 @@ public class AssetService {
         try {
             contract.submitTransaction("UpdateAsset", productIdToChange, ownerToChange, priceToChange);
             System.out.println("Asset updated");
+            byte[] result = contract.evaluateTransaction("ReadAsset", productIdToChange);
+            System.out.println("Submit Transaction: UpdateAsset, result: " + new String(result));
         } catch (ContractException exception){
             System.out.println("Invalid product Id");
         }
@@ -68,7 +70,7 @@ public class AssetService {
         String productIdToDelete = scanner.next();
         try {
             contract.submitTransaction("DeleteAsset", productIdToDelete);
-            System.out.println("Asset updated");
+            System.out.println("Asset " + productIdToDelete + " deleted");
         } catch (ContractException exception){
             System.out.println("Invalid product Id");
         }
@@ -81,7 +83,9 @@ public class AssetService {
         String newOwner = scanner.next();
         try {
             contract.submitTransaction("TransferAsset", productIdToTransfer, newOwner);
-            System.out.println("Asset updated");
+            System.out.println("Asset transferred");
+            byte[] result = contract.evaluateTransaction("ReadAsset", productIdToTransfer);
+            System.out.println("Submit Transaction: TransferAsset, result: " + new String(result));
         } catch (ContractException exception){
             System.out.println("Invalid product Id");
         }

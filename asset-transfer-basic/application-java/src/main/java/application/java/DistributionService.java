@@ -12,12 +12,12 @@ public class DistributionService {
     private static final int DEFAULT_USER_CHOICE = 0;
 
     public static void createDistribution(Contract contract, Scanner scanner) throws InterruptedException, TimeoutException {
+        System.out.println("Enter the id of distribution:");
+        String distributionId = scanner.next();
         System.out.println("Enter owner of new distribution:");
         String owner = scanner.next();
         System.out.println("Enter the sales id:");
         String salesId = scanner.next();
-        System.out.println("Enter the id of distribution:");
-        String distributionId = scanner.next();
         System.out.println("Enter the product id you want to ship:");
         String saledProductId = scanner.next();
         System.out.println("Enter product quantity you want to ship:");
@@ -29,33 +29,44 @@ public class DistributionService {
         System.out.println("Enter the cost of shipment:");
         String shippingCost = scanner.next();
         try {
-            contract.submitTransaction("CreateDistribution", owner, salesId, distributionId, saledProductId, quantity, shipper, location, shippingCost);
-            System.out.println("Distribution created");
+            contract.submitTransaction("CreateDistribution", distributionId, owner, salesId, saledProductId, quantity, shipper, location, shippingCost);
+            System.out.println("Distribution " + distributionId + " created");
         } catch (ContractException exception){
             System.out.println("Something went wrong\nDistribution not created");
         }
     }
 
-    public static void readDistribution(Contract contract, Scanner scanner) throws InterruptedException, TimeoutException {
+    public static void readDistribution(Contract contract, Scanner scanner) {
+        byte[] result;
         System.out.println("Enter id of distribution you want to retrieve:");
         String distributionId = scanner.next();
         try {
-            contract.submitTransaction("ReadDistribution", distributionId);
-            System.out.println("Distribution retrieved");
+            result = contract.evaluateTransaction("ReadDistribution", distributionId);
+            System.out.println("result: " + new String(result));
         } catch (ContractException exception){
             System.out.println("Something went wrong\nDistribution not retrieved");
         }
     }
 
     public static void updateDistribution(Contract contract, Scanner scanner) throws InterruptedException, TimeoutException {
-        System.out.println("Enter id of distribution you want to update:");
+        System.out.println("Enter the id of distribution you want to update:");
         String distributionId = scanner.next();
+        System.out.println("Enter new owner of distribution:");
+        String owner = scanner.next();
+        System.out.println("Enter new sales id:");
+        String salesId = scanner.next();
+        System.out.println("Enter new product id you want to ship:");
+        String saledProductId = scanner.next();
+        System.out.println("Enter new product quantity you want to ship:");
+        String quantity = scanner.next();
         System.out.println("Enter new shipper:");
         String shipper = scanner.next();
         System.out.println("Enter new location of shipment:");
         String location = scanner.next();
+        System.out.println("Enter new cost of shipment:");
+        String shippingCost = scanner.next();
         try {
-            contract.submitTransaction("UpdateDistribution", distributionId, shipper, location);
+            contract.submitTransaction("UpdateDistribution", distributionId, owner, salesId, saledProductId, quantity, shipper, location, shippingCost);
             System.out.println("Distribution updated");
         } catch (ContractException exception){
             System.out.println("Something went wrong\nDistribution not updated");
@@ -75,10 +86,11 @@ public class DistributionService {
         }
     }
 
-    public static void getAllDistribution(Contract contract) throws InterruptedException, TimeoutException {
+    public static void getAllDistribution(Contract contract) {
+        byte[] result;
         try {
-            contract.submitTransaction("GetAllDistributions");
-            System.out.println("Distributions retrieved");
+            result = contract.evaluateTransaction("GetAllDistributions");
+            System.out.println("result: " + new String(result));
         } catch (ContractException exception){
             System.out.println("Something went wrong\nDistributions not retrieved");
         }
@@ -92,47 +104,6 @@ public class DistributionService {
             System.out.println("Distribution deleted");
         } catch (ContractException exception){
             System.out.println("Something went wrong\nDistribution not deleted");
-        }
-    }
-
-    public static int getDistributionMenu(Scanner scanner){
-        System.out.println("Choose what you want to do:\n1. Create distribution\n2. Get distribution\n3. Update distribution\n4. Change owner\n5. Get distributions\n6. Delete distribution\n0. Exit");
-        int userChoice = DEFAULT_USER_CHOICE;
-
-        try {
-            userChoice = scanner.nextInt();
-        } catch (InputMismatchException e){
-            System.out.println("You have not input integer");
-            e.printStackTrace();
-        } catch (NoSuchElementException e){
-            System.out.println("You have not input any value");
-            e.printStackTrace();
-        } catch (IllegalStateException e) {
-            System.out.println("Scanner is closed");
-            e.printStackTrace();
-        }
-        return userChoice;
-    }
-    public static void getUserInput(int userChoice, Contract contract, Scanner scanner) throws InterruptedException, TimeoutException {
-        while (userChoice != DEFAULT_USER_CHOICE) {
-            switch (userChoice) {
-                case 1:
-                    createDistribution(contract, scanner);
-                    break;
-                case 2:
-                    readDistribution(contract, scanner);
-                    break;
-                case 3:
-                    updateDistribution(contract, scanner);
-                    break;
-                case 4:
-                    transferDistribution(contract, scanner);
-                case 5:
-                    getAllDistribution(contract);
-                case 6:
-                    deleteDistribution(contract, scanner);
-            }
-            userChoice = getDistributionMenu(scanner);
         }
     }
 }
