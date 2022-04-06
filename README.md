@@ -1,4 +1,4 @@
-1. Navigate to "test-network"
+r1. Navigate to "test-network"
 
 2. Use script: "./network.sh up createChannel -c mychannel -ca"
 
@@ -16,9 +16,11 @@
 
 9. From explorer directory use: "docker-compose up -d"
 
-10. Close after finished work: "docker-compose down -v"
+10. docker logs -f explorer.mynetwork.com
 
-11. Close the network from "test_network" with script: "./network.sh down"
+11. Close after finished work: "docker-compose down -v"
+
+12. Close the network from "test_network" with script: "./network.sh down"
 
 If you want to start over by closing the network and bringing it up again you have to delete "**wallet**" folder from directory "asset-transfer-basic" and 
 "**ordererOrganizations**" + "**peerOrganizations**" folders from directory "test-network\organizations" because new credentials and wallet will be generated again.
