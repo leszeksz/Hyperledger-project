@@ -49,16 +49,11 @@ public final class AssetTransfer implements ContractInterface {
         final String owner, final int price) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (AssetExists(ctx, productID)) {
-            String errorMessage = String.format("Asset %s already exists", productID);
-            throw new ChaincodeException(errorMessage,AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
-        }
+        checkAssetAlreadyExists(ctx, productID, "Asset %s already exists");
 
         Asset asset = new Asset(productID,owner, price);
         //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string
-        String sortedJson = genson.serialize(asset);
-        stub.putStringState(productID, sortedJson);
-
+        serialize(stub,asset,productID);
         return asset;
     }
 
@@ -74,11 +69,7 @@ public final class AssetTransfer implements ContractInterface {
         ChaincodeStub stub = ctx.getStub();
         String assetJSON = stub.getStringState(productID);
 
-        if (assetJSON == null || assetJSON.isEmpty()) {
-            String errorMessage = String.format("Asset %s does not exist", productID);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
-        }
+        checkIfAssetExist(assetJSON == null || assetJSON.isEmpty(), productID);
 
         Asset asset = genson.deserialize(assetJSON, Asset.class);
         return asset;
@@ -98,16 +89,11 @@ public final class AssetTransfer implements ContractInterface {
         final String owner, final int price) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (!AssetExists(ctx, productID)) {
-            String errorMessage = String.format("Asset %s does not exist", productID);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
-        }
+        checkIfAssetExist(!AssetExists(ctx, productID), productID);
 
         Asset newAsset = new Asset(productID, owner, price);
         //Use Genson to convert the Asset into string, sort it alphabetically and serialize it into a json string
-        String sortedJson = genson.serialize(newAsset);
-        stub.putStringState(productID, sortedJson);
+        serialize(stub,newAsset,productID);
         return newAsset;
     }
 
@@ -121,11 +107,7 @@ public final class AssetTransfer implements ContractInterface {
     public void DeleteAsset(final Context ctx, final String productID) {
         ChaincodeStub stub = ctx.getStub();
 
-        if (!AssetExists(ctx, productID)) {
-            String errorMessage = String.format("Asset %s does not exist", productID);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
-        }
+        checkIfAssetExist(!AssetExists(ctx, productID), productID);
 
         stub.delState(productID);
     }
@@ -158,18 +140,13 @@ public final class AssetTransfer implements ContractInterface {
         ChaincodeStub stub = ctx.getStub();
         String assetJSON = stub.getStringState(productID);
 
-        if (assetJSON == null || assetJSON.isEmpty()) {
-            String errorMessage = String.format("Asset %s does not exist", productID);
-            System.out.println(errorMessage);
-            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
-        }
+        checkIfAssetExist(assetJSON == null || assetJSON.isEmpty(), productID);
 
         Asset asset = genson.deserialize(assetJSON, Asset.class);
 
         Asset newAsset = new Asset(asset.getProductID(), newOwner, asset.getPrice());
         //Use a Genson to conver the Asset into string, sort it alphabetically and serialize it into a json string
-        String sortedJson = genson.serialize(newAsset);
-        stub.putStringState(productID, sortedJson);
+        serialize(stub,newAsset,productID);
 
         return asset.getOwner();
     }
@@ -202,4 +179,101 @@ public final class AssetTransfer implements ContractInterface {
 
         return response;
     }
+
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public SaleAsset CreateSaleAsset(final Context ctx, final String saleID, final String owner,
+                             final String product, final int quantity, final String contractor) {
+        ChaincodeStub stub = ctx.getStub();
+
+        checkAssetAlreadyExists(ctx, saleID, "Sale asset %s already exists");
+        SaleAsset saleAsset = new SaleAsset(saleID, owner, product, quantity, contractor);
+        serialize(stub,saleAsset,saleID);
+
+        return saleAsset;
+    }
+
+    @Transaction(intent = Transaction.TYPE.EVALUATE)
+    public SaleAsset ReadSaleAsset(final Context ctx, final String saleID){
+        ChaincodeStub stub = ctx.getStub();
+        String assetJSON = stub.getStringState(saleID);
+
+        checkIfAssetExist(assetJSON == null || assetJSON.isEmpty(), saleID);
+
+        SaleAsset saleAsset = genson.deserialize(assetJSON, SaleAsset.class);
+        return saleAsset;
+    }
+
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public SaleAsset UpdateSaleAsset(final Context ctx, final String saleID, final String owner,
+                                     final String product, final int quantity, final String contractor){
+        ChaincodeStub stub = ctx.getStub();
+
+        checkIfAssetExist(!AssetExists(ctx, saleID), saleID);
+        SaleAsset newSaleAsset = new SaleAsset(saleID,owner, product,quantity,contractor);
+        serialize(stub,newSaleAsset,saleID);
+        return newSaleAsset;
+    }
+
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public void DeleteSaleAsset(final Context ctx, final String saleID){
+        ChaincodeStub stub = ctx.getStub();
+
+        checkIfAssetExist(!AssetExists(ctx, saleID), saleID);
+        stub.delState(saleID);
+    }
+
+    @Transaction(intent = Transaction.TYPE.SUBMIT)
+    public String TransferSaleAsset(final Context ctx, final String saleID, final String newOwner) {
+        ChaincodeStub stub = ctx.getStub();
+        String assetJSON = stub.getStringState(saleID);
+
+        checkIfAssetExist(assetJSON == null || assetJSON.isEmpty(), saleID);
+
+        SaleAsset saleAsset = genson.deserialize(assetJSON, SaleAsset.class);
+
+        SaleAsset newSaleAsset = new SaleAsset(saleAsset.getSaleID(),newOwner, saleAsset.getProduct(),saleAsset.getQuantity(),null);
+        String sortedJSON = genson.serialize(newSaleAsset);
+
+        return saleAsset.getOwner();
+    }
+
+    @Transaction(intent = Transaction.TYPE.EVALUATE)
+    public String GetAllSaleAssets(final Context ctx){
+        ChaincodeStub stub = ctx.getStub();
+
+        List<SaleAsset> queryResults = new ArrayList<>();
+
+        QueryResultsIterator<KeyValue> results = stub.getStateByRange("", "");
+
+        for(KeyValue result: results){
+            SaleAsset saleAsset = genson.deserialize(result.getStringValue(), SaleAsset.class);
+            System.out.println(saleAsset);
+            queryResults.add(saleAsset);
+        }
+
+        final String response = genson.serialize(queryResults);
+
+        return response;
+    }
+
+    private void checkAssetAlreadyExists(Context ctx, String saleID, String format) {
+        if (AssetExists(ctx, saleID)) {
+            String errorMessage = String.format(format, saleID);
+            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_ALREADY_EXISTS.toString());
+        }
+    }
+
+    private void checkIfAssetExist(boolean ctx, String saleID) {
+        if (ctx){
+            String errorMessage = String.format("Asset %s does not exist", saleID);
+            System.out.println(errorMessage);
+            throw new ChaincodeException(errorMessage, AssetTransferErrors.ASSET_NOT_FOUND.toString());
+        }
+    }
+
+    private void serialize(ChaincodeStub stub, Object obj, String id){
+        String sortedJson = genson.serialize(obj);
+        stub.putStringState(id,sortedJson);
+    }
+
 }
