@@ -54,7 +54,6 @@ public class App {
 		// connect to the network and invoke the smart contract
 		try (Gateway gateway = connect()) {
 				startContract(gateway);
-//				startDistributionContract(gateway);
 		}
 	}
 
@@ -65,39 +64,66 @@ public class App {
 		Contract contract = network.getContract(Constants.CONTRACT);
 
 		Scanner scanner = new Scanner(System.in);
-		int userChoice = AssetService.getUserInput(scanner);
+		int userChoice = getUserInput(scanner);
 
 		if(userChoice == DEFAULT_USER_CHOICE){
 			scanner.close();
 			System.out.println("You are about to exit. Good bye :)");
 			return;
 		}
+
+
+		while (userChoice != DEFAULT_USER_CHOICE) {
+			switch (userChoice) {
+				case 1:
+					AssetService.createAsset(contract, scanner);
+					break;
+				case 2:
+					AssetService.getAssets(contract);
+					break;
+				case 3:
+					AssetService.readAsset(contract, scanner);
+					break;
+				case 4:
+					AssetService.updateAsset(contract, scanner);
+					break;
+				case 5:
+					AssetService.deleteAsset(contract, scanner);
+					break;
+				case 6:
+					AssetService.transferAsset(contract, scanner);
+					break;
+				case 7:
+					SaleService.createSaleAsset(contract, scanner);
+					break;
+				case 8:
+					SaleService.getAllSaleAssets(contract);
+					break;
+			}
+			userChoice = getUserInput(scanner);
+		}
+		scanner.close();
+		System.out.println("Bye");
+	}
+
+	private static int getUserInput(Scanner scanner){
+
+		System.out.println("Choose what you want to do:\n1. Create asset\n2. GetAllAssets\n3. Show one asset\n4. Update asset\n5. Delete asset\n6. Change owner\n7. Create sale asset\n8. Get all sale assets\n0. Exit");
+		int userChoice = DEFAULT_USER_CHOICE;
 
 		try {
-			AssetService.invokeAssetContacts(userChoice, contract, scanner);
-		} catch(ContractException e) {
+			userChoice = scanner.nextInt();
+		} catch (InputMismatchException e){
+			System.out.println("You have not input integer");
+			e.printStackTrace();
+		} catch (NoSuchElementException e){
+			System.out.println("You have not input any value");
+			e.printStackTrace();
+		} catch (IllegalStateException e) {
+			System.out.println("Scanner is closed");
 			e.printStackTrace();
 		}
-		scanner.close();
-		System.out.println("Bye");
+		return userChoice;
 	}
 
-	private static void startDistributionContract(Gateway gateway) throws InterruptedException, TimeoutException {
-		int DEFAULT_USER_CHOICE = 0;
-		Network network = gateway.getNetwork(Constants.CHANNEL);
-		Contract contract = network.getContract(Constants.CONTRACT);
-
-		Scanner scanner = new Scanner(System.in);
-		int userChoice = DistributionService.getDistributionMenu(scanner);
-
-		if(userChoice == DEFAULT_USER_CHOICE){
-			scanner.close();
-			System.out.println("You are about to exit. Good bye :)");
-			return;
-		}
-
-		DistributionService.getUserInput(userChoice, contract, scanner);
-		scanner.close();
-		System.out.println("Bye");
-	}
 }
