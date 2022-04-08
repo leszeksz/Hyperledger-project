@@ -25,7 +25,7 @@ import com.owlike.genson.Genson;
 @Contract(
         name = "AssetTransfer",
         info = @Info (contact = @Contact( name = "Asset_Transfer")))
-@Default
+
 public final class AssetTransfer implements ContractInterface {
 
     private final Genson genson = new Genson();
