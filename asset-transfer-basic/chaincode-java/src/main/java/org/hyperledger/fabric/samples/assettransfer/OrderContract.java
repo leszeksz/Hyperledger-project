@@ -1,7 +1,6 @@
 package org.hyperledger.fabric.samples.assettransfer;
 
 import com.owlike.genson.Genson;
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import org.hyperledger.fabric.contract.Context;
 import org.hyperledger.fabric.contract.ContractInterface;
 import org.hyperledger.fabric.contract.annotation.*;
