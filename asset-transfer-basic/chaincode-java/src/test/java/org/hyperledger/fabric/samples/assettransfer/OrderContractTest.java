@@ -38,7 +38,7 @@ class OrderContractTest {
     }
 
     @Test
-    void validateOrdered() throws Exception {
+    void validateOrdered() throws InvalidOrderException {
         OrderContract orderContract = new OrderContract();
         Order order = new Order("testOrder", "womanPurse", 1000, LocalDate.of(2022, 6, 7), "ORDERED", 1000, "", "", 0, 0, "testOwner");
         boolean actual = orderContract.validateOrdered(order);
@@ -49,7 +49,7 @@ class OrderContractTest {
     @Test
     void validateInvalidProduct(){
         OrderContract orderContract = new OrderContract();
-        Exception thrown = Assertions.assertThrows(Exception.class, () -> {
+        InvalidOrderException thrown = Assertions.assertThrows(InvalidOrderException.class, () -> {
             Order order = new Order("testOrder", "jacket", 1000, LocalDate.of(2022, 6, 7), "ORDERED", 1000, "", "", 0, 0, "testOwner");
            orderContract.validateOrdered(order);
         });
@@ -60,7 +60,7 @@ class OrderContractTest {
     void validateTooBigOrTooSoonOrder(){
         OrderContract orderContract = new OrderContract();
         Order order = new Order("testOrder", "womanPurse", 10000, LocalDate.of(2022, 6, 7), "ORDERED", 1000, "", "", 0, 0, "testOwner");
-        Exception thrown = Assertions.assertThrows(Exception.class, () -> {
+        InvalidOrderException thrown = Assertions.assertThrows(InvalidOrderException.class, () -> {
             orderContract.validateOrdered(order);
         });
         Assertions.assertEquals("Quantity/days to delivery should be less than 100", thrown.getMessage());
@@ -70,14 +70,14 @@ class OrderContractTest {
     void validatePrice(){
         OrderContract orderContract = new OrderContract();
         Order order = new Order("testOrder", "womanPurse", 1000, LocalDate.of(2022, 6, 7), "ORDERED", 800, "", "", 0, 0, "testOwner");
-        Exception thrown = Assertions.assertThrows(Exception.class, () -> {
+        InvalidOrderException thrown = Assertions.assertThrows(InvalidOrderException.class, () -> {
             orderContract.validateOrdered(order);
         });
         Assertions.assertEquals("Price per one product should be 1000$", thrown.getMessage());
     }
 
     @Test
-    void updateOrderedStatus() throws Exception {
+    void updateOrderedStatus() throws InvalidOrderException {
         OrderContract orderContract = new OrderContract();
         Order order = new Order("testOrder", "womanPurse", 1000, LocalDate.of(2022, 6, 5), "ORDERED", 1000, "", "", 0, 0, "testOwner");
         String actual = orderContract.updateStatus(order);
@@ -85,7 +85,7 @@ class OrderContractTest {
     }
 
     @Test
-    void updateLeatherCollectedStatus() throws Exception {
+    void updateLeatherCollectedStatus() throws InvalidOrderException {
         OrderContract orderContract = new OrderContract();
         //TODO add leather and metal counts conditions
         Order order = new Order("testOrder", "womanPurse", 1000, LocalDate.of(2022, 6, 5), "COLLECTING_MATERIALS", 1000, "", "", 1000, 1000, "testOwner");
@@ -94,19 +94,17 @@ class OrderContractTest {
     }
 
     @Test
-    void updateMaterialsCollectedStatus() throws Exception {
+    void updateMaterialsCollectedStatus() throws InvalidOrderException {
         OrderContract orderContract = new OrderContract();
         Order order = new Order("testOrder", "womanPurse", 1000, LocalDate.of(2022, 6, 5), "MATERIALS_COLLECTED", 1000, "", "", 0, 0, "testOwner");
-
         String actual = orderContract.updateStatus(order);
         Assertions.assertEquals("MATERIALS_DELIVERED", actual);
     }
 
     @Test
-    void updateMaterialsDeliveredStatus() throws Exception {
+    void updateMaterialsDeliveredStatus() throws InvalidOrderException {
         OrderContract orderContract = new OrderContract();
         Order order = new Order("testOrder", "womanPurse", 1000, LocalDate.of(2022, 6, 5), "MATERIALS_DELIVERED", 1000, "", "", 0, 0, "testOwner");
-
         String actual = orderContract.updateStatus(order);
         Assertions.assertEquals("PRODUCED", actual);
     }
