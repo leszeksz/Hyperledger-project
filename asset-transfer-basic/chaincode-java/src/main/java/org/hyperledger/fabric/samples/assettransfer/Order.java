@@ -12,7 +12,7 @@ public final class Order {
 
     public enum OrderStatuses {
         ORDERED,
-        LEATHER_COLLECTED,
+        COLLECTING_MATERIALS,
         MATERIALS_COLLECTED,
         MATERIALS_DELIVERED,
         PRODUCED
@@ -42,9 +42,19 @@ public final class Order {
     @Property()
     private final String assembler;
 
+    @Property()
+    private final int leatherCount;
+
+    @Property()
+    private final int metalCount;
+
+    @Property()
+    private final String owner;
+
     public Order(@JsonProperty("ID") final String ID, @JsonProperty("productName") final String productName, @JsonProperty("quantity") final int quantity,
                  @JsonProperty("deliveryDate") final LocalDate deliveryDate, @JsonProperty("status") final String status, @JsonProperty("price") final int price,
-                 @JsonProperty("orderer") final String orderer, @JsonProperty("assembler") final String assembler) {
+                 @JsonProperty("orderer") final String orderer, @JsonProperty("assembler") final String assembler, @JsonProperty("leatherCount") final int leatherCount,
+                 @JsonProperty("metalCount") final int metalCount, @JsonProperty("owner") final String owner) {
         this.ID = ID;
         this.productName = productName;
         this.quantity = quantity;
@@ -53,6 +63,10 @@ public final class Order {
         this.price = price;
         this.orderer = orderer;
         this.assembler = assembler;
+        this.leatherCount = leatherCount;
+        this.metalCount = metalCount;
+        this.owner = owner;
+
     }
 
     public String getID() {
@@ -87,18 +101,24 @@ public final class Order {
         return assembler;
     }
 
+    public int getLeatherCount() { return leatherCount; }
+
+    public int getMetalCount() { return metalCount; }
+
+    public String getOwner() { return owner; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return Objects.deepEquals(
-                new String[] {getID(), getProductName(), getStatus(), getOrderer(), getAssembler()},
-                new String[] {order.getID(), order.getProductName(), order.getStatus(), order.getOrderer(), order.getAssembler()})
+                new String[] {getID(), getProductName(), getStatus(), getOrderer(), getAssembler(), getOwner()},
+                new String[] {order.getID(), order.getProductName(), order.getStatus(), order.getOrderer(), order.getAssembler(), order.getOwner()})
                 &&
                 Objects.deepEquals(
-                        new int[] {getQuantity(), getPrice()},
-                        new int[] {order.getQuantity(), order.getPrice()})
+                        new int[] {getQuantity(), getPrice(), getLeatherCount(), getMetalCount()},
+                        new int[] {order.getQuantity(), order.getPrice(), order.getLeatherCount(), order.getMetalCount()})
                 &&
                 Objects.deepEquals(
                         new LocalDate[] {getDeliveryDate()},
@@ -107,13 +127,14 @@ public final class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getID(), getProductName(), getQuantity(), getDeliveryDate(), getStatus(), getPrice(), getOrderer(), getAssembler());
+        return Objects.hash(getID(), getProductName(), getQuantity(), getDeliveryDate(), getStatus(), getPrice(), getOrderer(), getAssembler(), getLeatherCount(),
+                getMetalCount(), getOwner());
     }
 
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) +
-                " [productID=" + ID +
+                " [ID=" + ID +
                 ", productName=" + productName +
                 ", quantity=" + quantity +
                 ", deliveryDate=" + deliveryDate +
@@ -121,6 +142,9 @@ public final class Order {
                 ", price=" + price +
                 ", orderer=" + orderer +
                 ", assembler=" + assembler +
+                ", leatherCount=" + leatherCount +
+                ", metalCount=" + metalCount +
+                ", owner=" + owner +
                 "]";
     }
 }
