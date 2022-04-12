@@ -4,7 +4,7 @@ import com.owlike.genson.annotation.JsonProperty;
 import org.hyperledger.fabric.contract.annotation.DataType;
 import org.hyperledger.fabric.contract.annotation.Property;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @DataType()
@@ -28,7 +28,7 @@ public final class Order {
     private final int quantity;
 
     @Property()
-    private final Date deliveryDate;
+    private final LocalDate deliveryDate;
 
     @Property()
     private final String status;
@@ -43,7 +43,7 @@ public final class Order {
     private final String assembler;
 
     public Order(@JsonProperty("ID") final String ID, @JsonProperty("productName") final String productName, @JsonProperty("quantity") final int quantity,
-                 @JsonProperty("deliveryDate") final Date deliveryDate, @JsonProperty("status") final String status, @JsonProperty("price") final int price,
+                 @JsonProperty("deliveryDate") final LocalDate deliveryDate, @JsonProperty("status") final String status, @JsonProperty("price") final int price,
                  @JsonProperty("orderer") final String orderer, @JsonProperty("assembler") final String assembler) {
         this.ID = ID;
         this.productName = productName;
@@ -67,7 +67,7 @@ public final class Order {
         return quantity;
     }
 
-    public Date getDeliveryDate() {
+    public LocalDate getDeliveryDate() {
         return deliveryDate;
     }
 
@@ -101,8 +101,8 @@ public final class Order {
                         new int[] {order.getQuantity(), order.getPrice()})
                 &&
                 Objects.deepEquals(
-                        new Date[] {getDeliveryDate()},
-                        new Date[] {order.getDeliveryDate()});
+                        new LocalDate[] {getDeliveryDate()},
+                        new LocalDate[] {order.getDeliveryDate()});
     }
 
     @Override
@@ -114,13 +114,13 @@ public final class Order {
     public String toString() {
         return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) +
                 " [productID=" + ID +
-                ", owner=" + productName +
-                ", price=" + quantity +
-                ", owner=" + deliveryDate +
-                ", price=" + status +
-                ", owner=" + price +
-                ", price=" + orderer +
-                ", price=" + assembler +
+                ", productName=" + productName +
+                ", quantity=" + quantity +
+                ", deliveryDate=" + deliveryDate +
+                ", status=" + status +
+                ", price=" + price +
+                ", orderer=" + orderer +
+                ", assembler=" + assembler +
                 "]";
     }
 }

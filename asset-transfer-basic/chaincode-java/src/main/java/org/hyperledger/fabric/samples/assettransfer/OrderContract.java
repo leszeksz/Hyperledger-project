@@ -9,7 +9,6 @@ import org.hyperledger.fabric.shim.ChaincodeStub;
 import org.hyperledger.fabric.shim.ledger.KeyValue;
 import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,15 +41,21 @@ public class OrderContract implements ContractInterface {
      * @return the created order
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Order CreateOrder(final Context ctx, final String ID, final String productName, final int quantity, final Date deliveryDate, final String status,
+    public Order CreateOrder(final Context ctx, final String ID, final String productName, final int quantity, final String deliveryDate, final String status,
                              final int price, final String orderer, final String assembler) {
         ChaincodeStub stub = ctx.getStub();
 
         checkAssetAlreadyExists(ctx, ID, "Order %s already exists");
 
-        Order order = new Order(ID, productName, quantity, deliveryDate, status, price, orderer, assembler);
+        Order order = new Order(ID, productName, quantity, getDeliveryDate(deliveryDate), status, price, orderer, assembler);
         serialize(stub, order, ID);
         return order;
+    }
+
+    public LocalDate getDeliveryDate(String deliveryDate) {
+        String[] splittedDate = deliveryDate.split("-");
+        LocalDate date = LocalDate.of(Integer.valueOf(splittedDate[0]), Integer.valueOf(splittedDate[1]), Integer.valueOf(splittedDate[2]));
+        return date;
     }
 
     /**
@@ -86,7 +91,7 @@ public class OrderContract implements ContractInterface {
      * @return the updated order
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
-    public Order UpdateOrder(final Context ctx, final String ID, final String productName, final int quantity, final Date deliveryDate, final String status,
+    public Order UpdateOrder(final Context ctx, final String ID, final String productName, final int quantity, final String deliveryDate, final String status,
                              final int price, final String orderer, final String assembler) throws Exception {
         ChaincodeStub stub = ctx.getStub();
         Order.OrderStatuses updatedStatus = null;
@@ -95,7 +100,7 @@ public class OrderContract implements ContractInterface {
 
         checkIfOrderExists(!OrderExists(ctx, ID), ID);
         if(status.equals(Order.OrderStatuses.ORDERED)){
-            validateOrdered(productName, quantity, deliveryDate, price);
+            validateOrdered(productName, quantity, getDeliveryDate(deliveryDate), price);
             updatedStatus = Order.OrderStatuses.LEATHER_COLLECTED;
 //        } else if(status.equals(Order.OrderStatuses.LEATHER_COLLECTED)) {
 //            //validateCollected1();
@@ -113,19 +118,19 @@ public class OrderContract implements ContractInterface {
                 throw new Exception("No status provided");
         }
 
-        Order order = new Order(ID, productName, quantity, deliveryDate, updatedStatus.toString(), price, orderer, assembler);
+        Order order = new Order(ID, productName, quantity, getDeliveryDate(deliveryDate), updatedStatus.toString(), price, orderer, assembler);
         serialize(stub, order, ID);
         return order;
     }
 
-    private void validateOrdered(String productName, int quantity, Date deliveryDate, int price) throws Exception {
+    private void validateOrdered(String productName, int quantity, LocalDate deliveryDate, int price) throws Exception {
         if(!productName.equals("Woman purse")){
             throw new Exception("Product name should be Woman Purse");
         }
         if(price != 1000){
             throw new Exception("Price per one product should be 1000$");
         }
-        long daysToDelivery = LocalDate.of(deliveryDate.getYear(), deliveryDate.getMonth(), deliveryDate.getDay()).toEpochDay() - LocalDate.now().toEpochDay();
+        long daysToDelivery = LocalDate.of(deliveryDate.getYear(), deliveryDate.getMonth(), deliveryDate.getDayOfMonth()).toEpochDay() - LocalDate.now().toEpochDay();
         if(quantity / daysToDelivery > 0.01){
             throw new Exception("Quantity/days to delivery should be less than 0.01");
         }
