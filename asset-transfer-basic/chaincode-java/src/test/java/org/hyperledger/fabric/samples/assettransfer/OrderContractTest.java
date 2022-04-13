@@ -58,11 +58,11 @@ class OrderContractTest {
             assetList = new ArrayList<>();
 
             assetList.add(new OrderContractTest.MockKeyValue("order1",
-                    "{\"ID\":\"order1\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0}"));
+                    "{\"iD\":\"order1\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0}"));
             assetList.add(new OrderContractTest.MockKeyValue("order2",
-                    "{\"ID\":\"order2\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0}"));
+                    "{\"iD\":\"order2\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0}"));
             assetList.add(new OrderContractTest.MockKeyValue("order3",
-                    "{\"ID\":\"order3\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0}"));
+                    "{\"iD\":\"order3\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0}"));
         }
 
         @Override
@@ -139,7 +139,7 @@ class OrderContractTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("order2"))
-                    .thenReturn("{\"ID\":\"order2, \"productName\":300,\"quantity\":\"300\", \"deliveryDate\":\"2022-05-06, \"status\":ORDERED,\"price\":\"1000\", \"leatherCount\":300,\"metalCount\":\"0\"}");
+                    .thenReturn("{\"iD\":\"order2, \"productName\":300,\"quantity\":\"300\", \"deliveryDate\":\"2022-05-06, \"status\":ORDERED,\"price\":\"1000\", \"leatherCount\":300,\"metalCount\":\"0\"}");
 
             Throwable thrown = catchThrowable(() -> {
                 contract.CreateOrder(ctx, "order2", "productName", 2, "2022-05-06", "status", 10,  0, 0);
@@ -174,9 +174,9 @@ class OrderContractTest {
 
         String assets = contract.GetAllOrders(ctx);
 
-//        assertThat(assets).isEqualTo("[{\"ID\":\"order1\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0},"
-//                + "{\"ID\":\"order2\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0},"
-//                + "{\"ID\":\"order3\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0},");
+//        assertThat(assets).isEqualTo("[{\"iD\":\"order1\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0},"
+//                + "{\"iD\":\"order2\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0},"
+//                + "{\"iD\":\"order3\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-05-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":300,\"metalCount\":0},");
     }
 
     @Nested
@@ -189,7 +189,7 @@ class OrderContractTest {
             ChaincodeStub stub = mock(ChaincodeStub.class);
             when(ctx.getStub()).thenReturn(stub);
             when(stub.getStringState("order1"))
-                    .thenReturn("{\"ID\":\"order1\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-07-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":0,\"metalCount\":0}");
+                    .thenReturn("{\"iD\":\"order1\", \"productName\":\"womanPurse\",\"quantity\":300, \"deliveryDate\":\"2022-07-06\", \"status\":\"ORDERED\",\"price\":1000, \"leatherCount\":0,\"metalCount\":0}");
 
             Order asset = contract.UpdateOrder(ctx, "order1", "womanPurse", 300, "2022-05-06", "ORDERED", 1000,  100, 0);
 
@@ -227,18 +227,15 @@ class OrderContractTest {
     void testToString() {
         Order order = new Order("order1", "productName", 2, "2022-05-06", "status", 10,0, 0);
         String actual = order.toString();
-        String expected = "Order@f6cd41c5" +
-                " [ID=" + "order1" +
+        String expected = "Order@ca5182ed" +
+                " [iD=" + "order1" +
                 ", productName=" + "productName" +
                 ", quantity=" + 2 +
                 ", deliveryDate=" + "2022-05-06" +
                 ", status=" + "status" +
                 ", price=" + 10 +
-                ", orderer=" + "" +
-                ", assembler=" + "" +
                 ", leatherCount=" + 0 +
                 ", metalCount=" + 0 +
-                ", owner=" + "testOwner" +
                 "]";
 //        assertEquals(expected, actual);
     }
