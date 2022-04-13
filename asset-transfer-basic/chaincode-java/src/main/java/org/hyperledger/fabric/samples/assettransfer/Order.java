@@ -144,8 +144,8 @@ public final class Order {
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) +
-                " [ID=" + ID +
-                ", " + ID_PROP + "=" + productName +
+                " [" + ID_PROP + "=" + ID +
+                ", " + PRODUCT_NAME_PROP + "=" + productName +
                 ", " + QUANTITY_PROP + "=" + quantity +
                 ", " + DELIVERY_DATE_PROP + "=" + deliveryDate +
                 ", " + STATUS_PROP + "=" + status +

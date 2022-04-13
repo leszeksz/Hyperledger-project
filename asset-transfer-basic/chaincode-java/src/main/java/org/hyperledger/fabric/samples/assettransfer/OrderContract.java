@@ -91,7 +91,7 @@ public class OrderContract implements ContractInterface {
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
     public Order UpdateOrder(final Context ctx, final String ID, final String productName, final int quantity, final String deliveryDate, final String status,
-                             final int price, final String orderer, final String assembler, final int leatherCount, final int metalCount, final String owner) throws Exception {
+                             final int price, final String orderer, final String assembler, final int leatherCount, final int metalCount, final String owner) {
         ChaincodeStub stub = ctx.getStub();
 
         checkIfOrderExists(!OrderExists(ctx, ID), ID);
@@ -211,14 +211,13 @@ public class OrderContract implements ContractInterface {
 
         QueryResultsIterator<KeyValue> results = stub.getStateByRange("", "");
 
-        for (KeyValue result: results) {
+        for (KeyValue result : results) {
             Order order = genson.deserialize(result.getStringValue(), Order.class);
             System.out.println(order);
             queryResults.add(order);
         }
 
         final String response = genson.serialize(queryResults);
-
         return response;
     }
 

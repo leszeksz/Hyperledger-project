@@ -53,7 +53,7 @@ class OrderContractTest {
             Order order = new Order("testOrder", "jacket", 1000, LocalDate.of(2022, 6, 7), "ORDERED", 1000, "", "", 0, 0, "testOwner");
            orderContract.validateOrdered(order);
         });
-        Assertions.assertEquals("Product name should be womanPurse", thrown.getMessage());
+        Assertions.assertEquals("We do not have such product in our offer", thrown.getMessage());
     }
 
     @Test
