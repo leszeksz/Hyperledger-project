@@ -10,9 +10,21 @@ import java.util.Objects;
 @DataType()
 public final class Order {
 
+    private static final String ID_PROP = "ID";
+    private static final String PRODUCT_NAME_PROP = "productName";
+    private static final String QUANTITY_PROP = "quantity";
+    private static final String DELIVERY_DATE_PROP = "deliveryDate";
+    private static final String STATUS_PROP = "status";
+    private static final String PRICE_PROP = "price";
+    private static final String ORDERER_PROP = "orderer";
+    private static final String ASSEMBLER_PROP = "assembler";
+    private static final String LEATHER_COUNT_PROP = "leatherCount";
+    private static final String METAL_COUNT_PROP = "metalCount";
+    private static final String OWNER_PROP = "owner";
+
     public enum OrderStatuses {
         ORDERED,
-        LEATHER_COLLECTED,
+        COLLECTING_MATERIALS,
         MATERIALS_COLLECTED,
         MATERIALS_DELIVERED,
         PRODUCED
@@ -42,9 +54,19 @@ public final class Order {
     @Property()
     private final String assembler;
 
-    public Order(@JsonProperty("ID") final String ID, @JsonProperty("productName") final String productName, @JsonProperty("quantity") final int quantity,
-                 @JsonProperty("deliveryDate") final LocalDate deliveryDate, @JsonProperty("status") final String status, @JsonProperty("price") final int price,
-                 @JsonProperty("orderer") final String orderer, @JsonProperty("assembler") final String assembler) {
+    @Property()
+    private final int leatherCount;
+
+    @Property()
+    private final int metalCount;
+
+    @Property()
+    private final String owner;
+
+    public Order(@JsonProperty(ID_PROP) final String ID, @JsonProperty(PRODUCT_NAME_PROP) final String productName, @JsonProperty(QUANTITY_PROP) final int quantity,
+                 @JsonProperty(DELIVERY_DATE_PROP) final LocalDate deliveryDate, @JsonProperty(STATUS_PROP) final String status, @JsonProperty(PRICE_PROP) final int price,
+                 @JsonProperty(ORDERER_PROP) final String orderer, @JsonProperty(ASSEMBLER_PROP) final String assembler, @JsonProperty(LEATHER_COUNT_PROP) final int leatherCount,
+                 @JsonProperty(METAL_COUNT_PROP) final int metalCount, @JsonProperty(OWNER_PROP) final String owner) {
         this.ID = ID;
         this.productName = productName;
         this.quantity = quantity;
@@ -53,6 +75,10 @@ public final class Order {
         this.price = price;
         this.orderer = orderer;
         this.assembler = assembler;
+        this.leatherCount = leatherCount;
+        this.metalCount = metalCount;
+        this.owner = owner;
+
     }
 
     public String getID() {
@@ -67,9 +93,7 @@ public final class Order {
         return quantity;
     }
 
-    public LocalDate getDeliveryDate() {
-        return deliveryDate;
-    }
+    public LocalDate getDeliveryDate() { return deliveryDate; }
 
     public String getStatus() {
         return status;
@@ -87,18 +111,24 @@ public final class Order {
         return assembler;
     }
 
+    public int getLeatherCount() { return leatherCount; }
+
+    public int getMetalCount() { return metalCount; }
+
+    public String getOwner() { return owner; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
         return Objects.deepEquals(
-                new String[] {getID(), getProductName(), getStatus(), getOrderer(), getAssembler()},
-                new String[] {order.getID(), order.getProductName(), order.getStatus(), order.getOrderer(), order.getAssembler()})
+                new String[] {getID(), getProductName(), getStatus(), getOrderer(), getAssembler(), getOwner()},
+                new String[] {order.getID(), order.getProductName(), order.getStatus(), order.getOrderer(), order.getAssembler(), order.getOwner()})
                 &&
                 Objects.deepEquals(
-                        new int[] {getQuantity(), getPrice()},
-                        new int[] {order.getQuantity(), order.getPrice()})
+                        new int[] {getQuantity(), getPrice(), getLeatherCount(), getMetalCount()},
+                        new int[] {order.getQuantity(), order.getPrice(), order.getLeatherCount(), order.getMetalCount()})
                 &&
                 Objects.deepEquals(
                         new LocalDate[] {getDeliveryDate()},
@@ -107,20 +137,24 @@ public final class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getID(), getProductName(), getQuantity(), getDeliveryDate(), getStatus(), getPrice(), getOrderer(), getAssembler());
+        return Objects.hash(getID(), getProductName(), getQuantity(), getDeliveryDate(), getStatus(), getPrice(), getOrderer(), getAssembler(), getLeatherCount(),
+                getMetalCount(), getOwner());
     }
 
     @Override
     public String toString() {
         return this.getClass().getSimpleName() + "@" + Integer.toHexString(hashCode()) +
-                " [productID=" + ID +
-                ", productName=" + productName +
-                ", quantity=" + quantity +
-                ", deliveryDate=" + deliveryDate +
-                ", status=" + status +
-                ", price=" + price +
-                ", orderer=" + orderer +
-                ", assembler=" + assembler +
+                " [ID=" + ID +
+                ", " + ID_PROP + "=" + productName +
+                ", " + QUANTITY_PROP + "=" + quantity +
+                ", " + DELIVERY_DATE_PROP + "=" + deliveryDate +
+                ", " + STATUS_PROP + "=" + status +
+                ", " + PRICE_PROP + "=" + price +
+                ", " + ORDERER_PROP + "=" + orderer +
+                ", " + ASSEMBLER_PROP + "=" + assembler +
+                ", " + LEATHER_COUNT_PROP + "=" + leatherCount +
+                ", " + METAL_COUNT_PROP + "=" + metalCount +
+                ", " + OWNER_PROP + "=" + owner +
                 "]";
     }
 }

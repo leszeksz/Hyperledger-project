@@ -11,7 +11,6 @@ import org.hyperledger.fabric.shim.ledger.QueryResultsIterator;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Contract(
@@ -42,12 +41,12 @@ public class OrderContract implements ContractInterface {
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
     public Order CreateOrder(final Context ctx, final String ID, final String productName, final int quantity, final String deliveryDate, final String status,
-                             final int price, final String orderer, final String assembler) {
+                             final int price, final String orderer, final String assembler, final int leatherCount, final int metalCount, final String owner) {
         ChaincodeStub stub = ctx.getStub();
 
         checkAssetAlreadyExists(ctx, ID, "Order %s already exists");
 
-        Order order = new Order(ID, productName, quantity, getDeliveryDate(deliveryDate), status, price, orderer, assembler);
+        Order order = new Order(ID, productName, quantity, getDeliveryDate(deliveryDate), status, price, orderer, assembler, leatherCount, metalCount, owner);
         serialize(stub, order, ID);
         return order;
     }
@@ -92,47 +91,94 @@ public class OrderContract implements ContractInterface {
      */
     @Transaction(intent = Transaction.TYPE.SUBMIT)
     public Order UpdateOrder(final Context ctx, final String ID, final String productName, final int quantity, final String deliveryDate, final String status,
-                             final int price, final String orderer, final String assembler) throws Exception {
+                             final int price, final String orderer, final String assembler, final int leatherCount, final int metalCount, final String owner) throws Exception {
         ChaincodeStub stub = ctx.getStub();
-        Order.OrderStatuses updatedStatus = null;
-
-        //TODO tworzenie z deliveryDate obiektu typu Date
 
         checkIfOrderExists(!OrderExists(ctx, ID), ID);
-        if(status.equals(Order.OrderStatuses.ORDERED)){
-            validateOrdered(productName, quantity, getDeliveryDate(deliveryDate), price);
-            updatedStatus = Order.OrderStatuses.LEATHER_COLLECTED;
-//        } else if(status.equals(Order.OrderStatuses.LEATHER_COLLECTED)) {
-//            //validateCollected1();
-//            updatedStatus = Order.OrderStatuses.LEATHER_COLLECTED;
-//        } else if(status.equals(Order.OrderStatuses.MATERIALS_COLLECTED)) {
-//            //validateCollected2();
-//        } else if(status.equals(Order.OrderStatuses.MATERIALS_DELIVERED)) {
-//            //validateDelivered();
-//            updatedStatus = Order.OrderStatuses.PRODUCED;
-        } else {
-            throw new Exception("Invalid status provided");
+        String updatedStatus = null;
+        try {
+            updatedStatus = updateStatus(new Order(ID, productName, quantity, getDeliveryDate(deliveryDate), status, price, orderer, assembler, leatherCount, metalCount, owner));
+        } catch (InvalidOrderException e) {
+            e.printStackTrace();
         }
 
-        if(updatedStatus == null){
-                throw new Exception("No status provided");
-        }
-
-        Order order = new Order(ID, productName, quantity, getDeliveryDate(deliveryDate), updatedStatus.toString(), price, orderer, assembler);
+//        if(updatedStatus == null){
+//            throw new InvalidOrderException("No status provided");
+//        } else {
+        Order order = new Order(ID, productName, quantity, getDeliveryDate(deliveryDate), updatedStatus, price, orderer, assembler, leatherCount, metalCount, owner);
         serialize(stub, order, ID);
         return order;
+//        }
     }
 
-    private void validateOrdered(String productName, int quantity, LocalDate deliveryDate, int price) throws Exception {
-        if(!productName.equals("Woman purse")){
-            throw new Exception("Product name should be Woman Purse");
+    public String updateStatus(Order order) throws InvalidOrderException {
+        String updatedStatus = null;
+        if(order.getStatus().equals(Order.OrderStatuses.ORDERED.toString()) && !order.getOwner().equals("store")){
+            validateOrdered(order);
+            updatedStatus = Order.OrderStatuses.COLLECTING_MATERIALS.toString();
+        } else if(order.getStatus().equals(Order.OrderStatuses.COLLECTING_MATERIALS.toString()) && areMaterialsCollected(order)) {
+            validateCollecting(order);
+            updatedStatus = Order.OrderStatuses.MATERIALS_COLLECTED.toString();
+        } else if(order.getStatus().equals(Order.OrderStatuses.COLLECTING_MATERIALS.toString()) && !areMaterialsCollected(order)){
+            validateCollecting(order);
+        } else if(order.getStatus().equals(Order.OrderStatuses.MATERIALS_COLLECTED.toString())) {
+            validateCollected(order);
+            updatedStatus = Order.OrderStatuses.MATERIALS_DELIVERED.toString();
+        } else if(order.getStatus().equals(Order.OrderStatuses.MATERIALS_DELIVERED.toString())) {
+            validateDelivered(order);
+            updatedStatus = Order.OrderStatuses.PRODUCED.toString();
+        } else {
+            throw new InvalidOrderException("Invalid status provided");
         }
-        if(price != 1000){
-            throw new Exception("Price per one product should be 1000$");
+        return updatedStatus;
+    }
+
+    private boolean areMaterialsCollected(Order order) {
+        return order.getLeatherCount() == order.getQuantity() && order.getMetalCount() == order.getQuantity();
+    }
+
+    public boolean validateOrdered(Order order) throws InvalidOrderException {
+        if(!order.getProductName().equals("womanPurse")){
+            throw new InvalidOrderException("We do not have such product in our offer");
         }
-        long daysToDelivery = LocalDate.of(deliveryDate.getYear(), deliveryDate.getMonth(), deliveryDate.getDayOfMonth()).toEpochDay() - LocalDate.now().toEpochDay();
-        if(quantity / daysToDelivery > 0.01){
-            throw new Exception("Quantity/days to delivery should be less than 0.01");
+        if(order.getPrice() != 1000){
+            throw new InvalidOrderException("Price per one product should be 1000$");
+        }
+        long daysToDelivery = getDaysToDelivery(order.getDeliveryDate());
+        if(order.getQuantity() / daysToDelivery > 100){
+            throw new InvalidOrderException("Quantity/days to delivery should be less than 100");
+        }
+        return true;
+    }
+
+    private long getDaysToDelivery(LocalDate deliveryDate) {
+        return LocalDate.of(deliveryDate.getYear(), deliveryDate.getMonth(), deliveryDate.getDayOfMonth()).toEpochDay() - LocalDate.now().toEpochDay();
+    }
+
+    public void validateCollecting(Order order) throws InvalidOrderException {
+//        validateOrdered(order);
+        if(order.getQuantity() < 200){
+            throw new InvalidOrderException("Too small order");
+        }
+        if(order.getQuantity() / getDaysToDelivery(order.getDeliveryDate()) > 100){
+            throw new InvalidOrderException("Too big quantity or delivery date too soon");
+        }
+    }
+
+    public void validateCollected(Order order) throws InvalidOrderException {
+//        validateCollecting(order);
+        if(getDaysToDelivery(order.getDeliveryDate()) < 14){
+            throw new InvalidOrderException("Delivery date too soon");
+        }
+    }
+
+    public void validateDelivered(Order order) throws InvalidOrderException {
+//        validateCollected(order);
+        if(!order.getProductName().equals("womanPurse")){
+            throw new InvalidOrderException("We do not have such product in our offer");
+        }
+        if(order.getQuantity() / getDaysToDelivery(order.getDeliveryDate()) > 100){
+            throw new InvalidOrderException("Too big quantity or delivery date too soon");
         }
     }
 
