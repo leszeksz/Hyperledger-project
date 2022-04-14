@@ -19,6 +19,8 @@ ORDERER_CA=${DIR}/test-network/organizations/ordererOrganizations/example.com/tl
 PEER0_ORG1_CA=${DIR}/test-network/organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
 PEER0_ORG2_CA=${DIR}/test-network/organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem
 PEER0_ORG3_CA=${DIR}/test-network/organizations/peerOrganizations/org3.example.com/tlsca/tlsca.org3.example.com-cert.pem
+PEER0_ORG4_CA=${DIR}/test-network/organizations/peerOrganizations/org4.example.com/tlsca/tlsca.org4.example.com-cert.pem
+PEER0_ORG5_CA=${DIR}/test-network/organizations/peerOrganizations/org5.example.com/tlsca/tlsca.org5.example.com-cert.pem
 
 
 if [[ ${ORG,,} == "org1" || ${ORG,,} == "digibank" ]]; then
@@ -35,8 +37,29 @@ elif [[ ${ORG,,} == "org2" || ${ORG,,} == "magnetocorp" ]]; then
    CORE_PEER_ADDRESS=localhost:9051
    CORE_PEER_TLS_ROOTCERT_FILE=${DIR}/test-network/organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org1.example.com-cert.pem
 
+elif [[ ${ORG,,} == "org3" || ${ORG,,} == "magneto" ]]; then
+
+   CORE_PEER_LOCALMSPID=Org3MSP
+   CORE_PEER_MSPCONFIGPATH=${DIR}/test-network/organizations/peerOrganizations/org3.example.com/users/Admin@org3.example.com/msp
+   CORE_PEER_ADDRESS=localhost:11051
+   CORE_PEER_TLS_ROOTCERT_FILE=${DIR}/test-network/organizations/peerOrganizations/org3.example.com/tlsca/tlsca.org3.example.com-cert.pem
+
+elif [[ ${ORG,,} == "org4" || ${ORG,,} == "magne" ]]; then
+
+   CORE_PEER_LOCALMSPID=Org4MSP
+   CORE_PEER_MSPCONFIGPATH=${DIR}/test-network/organizations/peerOrganizations/org4.example.com/users/Admin@org4.example.com/msp
+   CORE_PEER_ADDRESS=localhost:11061
+   CORE_PEER_TLS_ROOTCERT_FILE=${DIR}/test-network/organizations/peerOrganizations/org4.example.com/tlsca/tlsca.org4.example.com-cert.pem
+
+elif [[ ${ORG,,} == "org5" || ${ORG,,} == "mag" ]]; then
+
+   CORE_PEER_LOCALMSPID=Org5MSP
+   CORE_PEER_MSPCONFIGPATH=${DIR}/test-network/organizations/peerOrganizations/org5.example.com/users/Admin@org5.example.com/msp
+   CORE_PEER_ADDRESS=localhost:11071
+   CORE_PEER_TLS_ROOTCERT_FILE=${DIR}/test-network/organizations/peerOrganizations/org5.example.com/tlsca/tlsca.org5.example.com-cert.pem
+
 else
-   echo "Unknown \"$ORG\", please choose Org1/Digibank or Org2/Magnetocorp"
+   echo "Unknown \"$ORG\", please choose Org1/Digibank or Org2/Magnetocorp or Org3/Magneto or Org3/Magne or Org3/Mag"
    echo "For example to get the environment variables to set upa Org2 shell environment run:  ./setOrgEnv.sh Org2"
    echo
    echo "This can be automated to set them as well with:"
@@ -51,6 +74,8 @@ echo "ORDERER_CA=${ORDERER_CA}"
 echo "PEER0_ORG1_CA=${PEER0_ORG1_CA}"
 echo "PEER0_ORG2_CA=${PEER0_ORG2_CA}"
 echo "PEER0_ORG3_CA=${PEER0_ORG3_CA}"
+echo "PEER0_ORG4_CA=${PEER0_ORG4_CA}"
+echo "PEER0_ORG5_CA=${PEER0_ORG5_CA}"
 
 echo "CORE_PEER_MSPCONFIGPATH=${CORE_PEER_MSPCONFIGPATH}"
 echo "CORE_PEER_ADDRESS=${CORE_PEER_ADDRESS}"

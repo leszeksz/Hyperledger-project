@@ -1202,3 +1202,10 @@ ERROR	2022-04-06 12:28:47,399	7	org.hyperledger.fabric.sdk.ServiceDiscovery	[mai
 ERROR	2022-04-06 12:30:09,818	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Asset 1 does not exist; Asset 1 does not exist
 ERROR	2022-04-06 12:30:31,044	21226	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Unexpected error; Unexpected error
 ERROR	2022-04-06 12:32:21,114	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Undefined contract method called; Undefined contract method called
+ERROR	2022-04-12 15:01:46,008	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser14","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser14' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-04-12 15:01:46,009	1	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+ERROR	2022-04-12 15:02:46,672	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	POST request to https://localhost:7054 failed request body {"id":"appUser15","type":"client","affiliation":"org1.department1","attrs":[]}. Response: {"result":"","errors":[{"code":74,"message":"Identity 'appUser15' is already registered"}
+],"messages":[],"success":false}
+ERROR	2022-04-12 15:02:46,672	0	org.hyperledger.fabric_ca.sdk.HFCAClient	[main]	application.java.RegisterUser$1@4d5650ae
+ERROR	2022-04-12 15:03:44,517	0	org.hyperledger.fabric.gateway.impl.TransactionImpl	[main]	No valid proposal responses received. 2 peer error responses: Undefined contract method called; Undefined contract method called
