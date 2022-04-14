@@ -53,31 +53,20 @@ public class App {
 
 		// connect to the network and invoke the smart contract
 		try (Gateway gateway = connect()) {
-			System.out.println("Choose what you want to do:\n1. Production\n2. Distribution\n3. Sale");
-
-			Scanner scanner = new Scanner(System.in);
-			int userChoice = scanner.nextInt();
-			switch(userChoice){
-				case 1:
-					startContract(gateway);
-					break;
-				case 2:
-					startDistribution(gateway);
-					break;
-				case 3:
-					startSale(gateway);
-			}
+			startContract(gateway);
+		} catch (ContractException e) {
+			e.printStackTrace();
 		}
 	}
 
 
-	private static void startContract(Gateway gateway) throws ContractException, InterruptedException, TimeoutException {
+	private static void startContract(Gateway gateway) throws InterruptedException, TimeoutException {
 		int DEFAULT_USER_CHOICE = 0;
 		Network network = gateway.getNetwork(Constants.CHANNEL);
 		Contract contract = network.getContract(Constants.CONTRACT);
 
 		Scanner scanner = new Scanner(System.in);
-		int userChoice = getUserInput(scanner, "asset");
+		int userChoice = getUserInput(scanner);
 
 		if(userChoice == DEFAULT_USER_CHOICE){
 			scanner.close();
@@ -89,123 +78,29 @@ public class App {
 		while (userChoice != DEFAULT_USER_CHOICE) {
 			switch (userChoice) {
 				case 1:
-					AssetService.createAsset(contract, scanner);
+					OrderService.getAllOrders(contract);
 					break;
 				case 2:
-					AssetService.getAssets(contract);
+					OrderService.createOrder(contract, scanner);
 					break;
 				case 3:
-					AssetService.readAsset(contract, scanner);
+					OrderService.updateOrder(contract, scanner);
 					break;
 				case 4:
-					AssetService.updateAsset(contract, scanner);
-					break;
-				case 5:
-					AssetService.deleteAsset(contract, scanner);
-					break;
-				case 6:
-					AssetService.transferAsset(contract, scanner);
+					OrderService.readOrder(contract, scanner);
 					break;
 				default:
 					break;
 			}
-				userChoice = getUserInput(scanner, "asset");
+				userChoice = getUserInput(scanner);
 		}
 		scanner.close();
 		System.out.println("Bye");
 	}
 
-	private static void startDistribution(Gateway gateway) throws InterruptedException, TimeoutException {
-		int DEFAULT_USER_CHOICE = 0;
-		Network network = gateway.getNetwork(Constants.CHANNEL);
-		Contract contract = network.getContract(Constants.CONTRACT);
+	private static int getUserInput(Scanner scanner){
 
-		Scanner scanner = new Scanner(System.in);
-		int userChoice = getUserInput(scanner, "distribution");
-
-		if(userChoice == DEFAULT_USER_CHOICE){
-			scanner.close();
-			System.out.println("You are about to exit. Good bye :)");
-			return;
-		}
-
-
-		while (userChoice != DEFAULT_USER_CHOICE) {
-			switch (userChoice) {
-				case 1:
-					DistributionService.createDistribution(contract, scanner);
-					break;
-				case 2:
-					DistributionService.getAllDistribution(contract);
-					break;
-				case 3:
-					DistributionService.readDistribution(contract, scanner);
-					break;
-				case 4:
-					DistributionService.updateDistribution(contract, scanner);
-					break;
-				case 5:
-					DistributionService.deleteDistribution(contract, scanner);
-					break;
-				case 6:
-					DistributionService.transferDistribution(contract, scanner);
-					break;
-				default:
-					break;
-			}
-			userChoice = getUserInput(scanner, "distribution");
-		}
-		scanner.close();
-		System.out.println("Bye");
-	}
-
-	private static void startSale(Gateway gateway) throws ContractException, InterruptedException, TimeoutException {
-		int DEFAULT_USER_CHOICE = 0;
-		Network network = gateway.getNetwork(Constants.CHANNEL);
-		Contract contract = network.getContract(Constants.CONTRACT);
-
-		Scanner scanner = new Scanner(System.in);
-		int userChoice = getUserInput(scanner, "sale");
-
-		if(userChoice == DEFAULT_USER_CHOICE){
-			scanner.close();
-			System.out.println("You are about to exit. Good bye :)");
-			return;
-		}
-
-
-		while (userChoice != DEFAULT_USER_CHOICE) {
-			switch (userChoice) {
-				case 1:
-					SaleService.createSaleAsset(contract, scanner);
-					break;
-				case 2:
-					SaleService.getAllSaleAssets(contract);
-					break;
-				case 3:
-					SaleService.readSaleAsset(contract, scanner);
-					break;
-				case 4:
-					SaleService.updateSaleAsset(contract, scanner);
-					break;
-				case 5:
-					SaleService.deleteSaleAsset(contract, scanner);
-					break;
-				case 6:
-					SaleService.transferSaleAsset(contract, scanner);
-					break;
-				default:
-					break;
-			}
-			userChoice = getUserInput(scanner, "sale");
-		}
-		scanner.close();
-		System.out.println("Bye");
-	}
-
-	private static int getUserInput(Scanner scanner, String item){
-
-		System.out.println("Choose what you want to do:\n1. Create " + item + "\n2. Get all " + item + "s \n3. Get " + item + "\n4. Update " + item + "\n5. Delete " + item + "\n6. Change " + item + "'s owner\n0. Exit");
+		System.out.println("Choose what you want to do:\n1. getOrders\n2. createOrder\n3. updateOrder\n4. readOrder");
 		int userChoice = DEFAULT_USER_CHOICE;
 
 		try {
