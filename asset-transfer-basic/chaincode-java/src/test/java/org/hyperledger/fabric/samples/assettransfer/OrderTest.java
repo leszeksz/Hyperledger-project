@@ -4,8 +4,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
 public class OrderTest {
 
         @Nested
@@ -66,8 +64,8 @@ public class OrderTest {
     @Test
     public void toStringIdentifiesOrder() {
         Order order = new Order("id", "productName", 2, "2022-05-06", "status", 10,  0, 0);
-        String expected = "Order@16adf5fc" +
-                " [ID=" + "id" +
+        String expected = "Order@e38aa175" +
+                " [iD=" + "id" +
                 ", productName=" + "productName" +
                 ", quantity=" + 2 +
                 ", deliveryDate=" + "2022-05-06" +
